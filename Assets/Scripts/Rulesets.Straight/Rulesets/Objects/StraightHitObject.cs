@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Base.Rulesets.Straight.Rulesets.Objects.Types;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,5 +14,6 @@ namespace Base.Rulesets.Straight.Rulesets.Objects {
 
         public virtual int Column { get; set; }
 
+        public SampleInfoList Samples;
     }
 }

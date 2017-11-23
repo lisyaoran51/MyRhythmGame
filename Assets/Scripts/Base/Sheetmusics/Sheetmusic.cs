@@ -15,13 +15,19 @@ namespace Base.Sheetmusics {
         // The HitObjects this SheetMusic contains.
         public List<T> HitObjects = new List<T>();
 
-
-
+        public Sheetmusic(Sheetmusic original) {
+            SheetmusicInfo = original.SheetmusicInfo;
+            ControlPointInfo = original.ControlPointInfo;
+            SheetmusicMetadata = original.SheetmusicMetadata;
+            HitObjects = original.HitObjects;
+        }
     }
 
     public class Sheetmusic : Sheetmusic<HitObject> {
+       
 
-
-        
+        public Sheetmusic(Sheetmusic original)
+            : base(original) {
+        }
     }
 }

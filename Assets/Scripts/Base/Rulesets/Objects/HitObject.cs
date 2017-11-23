@@ -10,6 +10,8 @@ namespace Base.Rulesets.Objects {
 
         public double StartTime;
 
+        public SampleInfoList Samples { get; internal set; }
+
         public void ApplyDefaults(ControlPointInfo controlPointInfo, SheetmusicDifficulty baseDifficulty) {
 
         }

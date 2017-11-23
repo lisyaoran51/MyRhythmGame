@@ -47,3 +47,13 @@ RulesetContainer.load() -> RulesetContainer.loadObjects -> ManiaPlayfield.Add(Dr
 11/23
 寫完decoder，decoder應該是擺在selectsong那，先跳過
 先寫converter
+converter的運作方式：
+RulesetContainer.converter.Convert(WorkingSheetmusic.Sheetmusic); ->						
+	ConvertSheetmusic(new Sheetmusic(original)); ->												//SheetmusicConverter
+		HitObjects = original.HitObjects.SelectMany(h => convert(h, original)).ToList() ->
+			ConvertSheetmusic(original, sheetmusic) ->											//StraightSheetmusicConverter
+				generateSpecific(original) ->
+					SpecificSheetmusicPatternGenerator.Generate()								//SpecificSheetmusicPatternGenerator
+
+寫完converter和proccessor
+				
