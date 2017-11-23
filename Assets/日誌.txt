@@ -1,0 +1,49 @@
+11/13
+建player
+寫CreateRulesetContainerWith
+
+11/15
+把control point加入PlayField -> ScrollingHitIbjectContainer -> SpeedAdjustment -> LinearScrollingContainer
+寫StraightRulesetContainer .GetVisualRepresentation
+speedAdjustmentContainer裡只有timingPoint，Column和PlayField裡才有hitObject
+
+(timingPoint是輸入)
+ScrollingRulesetContainer -> Load() -> applySpeedAdjustment ->  
+playField.HitObjects.AddSpeedAdjustment -> CreateSpeedAdjustmentContainer(ControlPoint) -> LinearScrollingContainer
+
+
+(hitObject是輸入)
+RulesetContainer -> Load() -> loadObjects() -> GetVisualRepresentation( SheetMusic.HitObjects ) ->
+PlayField.Add -> HitObjectContainer.Add
+
+
+11/16
+連接方法應該是
+RulesetContainer.load() -> RulesetContainer.loadObjects -> ManiaPlayfield.Add(DrawableHitObject h) ->
+	Column.Add(DrawableHitObject hitObject) -> ScrollingHitObjectContainer.Add(DrawableHitObject hitObject) ->
+	adjustmentContainerAt(hitObject.HitObject.StartTime).Add(hitObject)
+
+然後ManiaPlayField的建構子會AddNested(column)，每個Column都會得到所有的SpeedAdjustmentContainer
+
+在ScrollingRulesetContainer的load()裡，applySpeedAdjustment時會
+													playfield.NestedPlayfields.ForEach(p => applySpeedAdjustment(controlPoint, p));
+													所以每個column都會有一個SpeedAdjustmentContainer
+
+11/19
+把newable寫成一new就會自動執行construct
+開始寫load，要寫成一加入一個父物件，就會自動執行load
+
+11/20
+看完osu的dependency caontainer，它是把物件的hiarchy加入到自己(子物件)裡，每個物件都有一個map存每個class type的快取資料
+如果要load的時候，會到map裡面尋找要load的parameter，如果沒有的話就去父物件找，一直recursive到找到或是沒有父物件
+
+寫完loadable，接下來要把interface補起來
+
+11/22
+寫到child addable，要把load寫出來
+走一遍程式，跳過converter
+改到wheetmusic
+
+11/23
+寫完decoder，decoder應該是擺在selectsong那，先跳過
+先寫converter
