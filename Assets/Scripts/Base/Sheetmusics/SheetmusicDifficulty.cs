@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Base.Sheetmusics {
     public class SheetmusicDifficulty {
+
+        public int AvailableColumns { get; set; }
         public float ApproachRate { get; internal set; }
         public float DrainRate { get; internal set; }
         public float OverallDifficulty { get; internal set; }

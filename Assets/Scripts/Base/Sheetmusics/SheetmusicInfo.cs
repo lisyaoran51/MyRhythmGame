@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using Base.IO.Serialization;
+using Base.Rulesets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Base.Sheetmusics {
-    public class SheetmusicInfo {
+    public class SheetmusicInfo : IJsonSerializable {
 
         public int ID { get; set; }
 

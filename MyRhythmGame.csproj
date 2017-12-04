@@ -76,12 +76,17 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets/Plugins/Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Base\AppBase.cs" />
     <Compile Include="Assets\Scripts\Base\Audio\SampleInfoList.cs" />
     <Compile Include="Assets\Scripts\Base\Audio\Track.cs" />
     <Compile Include="Assets\Scripts\Base\Graphics\Drawable.cs" />
     <Compile Include="Assets\Scripts\Base\Graphics\FlowContainer.cs" />
+    <Compile Include="Assets\Scripts\Base\IO\Serialization\IJsonSerializable.cs" />
     <Compile Include="Assets\Scripts\Base\Judgements\Judgement.cs" />
     <Compile Include="Assets\Scripts\Base\Play\Player.cs" />
     <Compile Include="Assets\Scripts\Base\Rulesets\Objects\Drawables\DrawableHitObject.cs" />
@@ -100,6 +105,7 @@
     <Compile Include="Assets\Scripts\Base\Sheetmusics\ControlPoints\ControlPointInfo.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\ControlPoints\TimingControlPoint.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\Formats\SheetmusicDecoder.cs" />
+    <Compile Include="Assets\Scripts\Base\Sheetmusics\IO\FileReader.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\Sheetmusic.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\SheetmusicConverter.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\SheetmusicDifficulty.cs" />
@@ -117,6 +123,12 @@
     <Compile Include="Assets\Scripts\Base\UI\ScrollingHitObjectContainer.cs" />
     <Compile Include="Assets\Scripts\Base\UI\ScrollingPlayField.cs" />
     <Compile Include="Assets\Scripts\Base\UI\ScrollingRulesetContainer.cs" />
+    <Compile Include="Assets\Scripts\Base\Views\StraightViewConfig.cs" />
+    <Compile Include="Assets\Scripts\Base\Views\Types\IView.cs" />
+    <Compile Include="Assets\Scripts\Base\Views\Types\IViewConfig.cs" />
+    <Compile Include="Assets\Scripts\Base\Views\View.cs" />
+    <Compile Include="Assets\Scripts\Base\Views\ViewConfig.cs" />
+    <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableHoldNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableStraightHitObject.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\HoldNote.cs" />
@@ -146,8 +158,10 @@
     <Compile Include="Assets\Scripts\Rulesets.Straight\UI\StraightHitObjectContainer.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\UI\StraightPlayField.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\UI\StraightRulesetContainer.cs" />
-    <Compile Include="Assets\Scripts\Scene\Loader.cs" />
-    <Compile Include="Assets\Scripts\Scene\PlayMain.cs" />
+    <Compile Include="Assets\Scripts\Scenes\Loader.cs" />
+    <Compile Include="Assets\Scripts\Scenes\PlayMain.cs" />
+    <Compile Include="Assets\Scripts\Tests\LoadSheetmusic.cs" />
+    <Compile Include="Assets\Scripts\Tests\SongSelect.cs" />
     <Compile Include="Assets\Scripts\Utils\Cachable.cs" />
     <Compile Include="Assets\Scripts\Utils\ChildAddable.cs" />
     <Compile Include="Assets\Scripts\Utils\Loadable.cs" />
@@ -160,6 +174,7 @@
     <Compile Include="Assets\Scripts\Utils\Types\INewable.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\Newtonsoft.Json.xml" />
     <None Include="Assets\日誌.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

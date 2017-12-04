@@ -8,7 +8,7 @@ using UnityEngine;
 public class ScrollingContainer : ChildAddable {
 
     internal ControlPoint ControlPoint;
-    internal double VisibleTimeRange;
+    internal float VisibleTimeRange;
     public DrawableScrollingHitObject<ScrollingHitObject> ScrollingHitObject;
 
     internal void Add(DrawableScrollingHitObject<ScrollingHitObject> hitObject) {

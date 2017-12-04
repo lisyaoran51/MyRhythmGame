@@ -62,35 +62,36 @@ public class StraightSheetmusicConverter : SheetmusicConverter<StraightHitObject
     /// <param name="original">The original hit object.</param>
     /// <returns>The hit objects generated.</returns>
     private IEnumerable<StraightHitObject> generateConverted(HitObject original) {
-        var endTimeData = original as IHasEndTime;
-        var distanceData = original as IHasDistance;
-        var positionData = original as IHasColumn;
-
-        // Following lines currently commented out to appease resharper
-
-        Patterns.PatternGenerator conversion = null;
-
-        if (distanceData != null)
-            conversion = new DistanceObjectPatternGenerator(random, original, beatmap, availableColumns, lastPattern);
-        else if (endTimeData != null)
-            conversion = new EndTimeObjectPatternGenerator(random, original, beatmap, availableColumns);
-        else if (positionData != null) {
-            computeDensity(original.StartTime);
-
-            conversion = new HitObjectPatternGenerator(random, original, beatmap, availableColumns, lastPattern, lastTime, lastPosition, density, lastStair);
-
-            recordNote(original.StartTime, positionData.Position);
-        }
-
-        if (conversion == null)
-            return null;
-
-        Pattern newPattern = conversion.Generate();
-        lastPattern = newPattern;
-
-        var stairPatternGenerator = (HitObjectPatternGenerator)conversion;
-        lastStair = stairPatternGenerator.StairType;
-
-        return newPattern.HitObjects;
+        //var endTimeData = original as IHasEndTime;
+        //var distanceData = original as IHasDistance;
+        //var positionData = original as IHasColumn;
+        //
+        //// Following lines currently commented out to appease resharper
+        //
+        //Patterns.PatternGenerator conversion = null;
+        //
+        //if (distanceData != null)
+        //    conversion = new DistanceObjectPatternGenerator(random, original, beatmap, availableColumns, lastPattern);
+        //else if (endTimeData != null)
+        //    conversion = new EndTimeObjectPatternGenerator(random, original, beatmap, availableColumns);
+        //else if (positionData != null) {
+        //    computeDensity(original.StartTime);
+        //
+        //    conversion = new HitObjectPatternGenerator(random, original, beatmap, availableColumns, lastPattern, lastTime, lastPosition, density, lastStair);
+        //
+        //    recordNote(original.StartTime, positionData.Position);
+        //}
+        //
+        //if (conversion == null)
+        //    return null;
+        //
+        //Pattern newPattern = conversion.Generate();
+        //lastPattern = newPattern;
+        //
+        //var stairPatternGenerator = (HitObjectPatternGenerator)conversion;
+        //lastStair = stairPatternGenerator.StairType;
+        //
+        //return newPattern.HitObjects;
+        return null;
     }
 }

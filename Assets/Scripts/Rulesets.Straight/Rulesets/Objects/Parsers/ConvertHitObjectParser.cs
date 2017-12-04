@@ -3,11 +3,12 @@ using Base.Rulesets.Objects.Parsers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Base.Rulesets.Straight.Rulesets.Objects.Parsers {
     public class ConvertHitObjectParser : HitObjectParser {
         public override HitObject Parse(string text) {
-            try     // x y  ConvertHitObjectType LegacySoundType curve|x:y|x:y repeatCount Length bank|add|vol 額外節點的bank 額外節點的SoundTypes
+            try     // x y time ConvertHitObjectType LegacySoundType curve|x:y|x:y repeatCount Length bank|add|vol 額外節點的bank 額外節點的SoundTypes
             {       //                                                        開始 中點 結束
                 string[] split = text.Split(',');
 
@@ -127,7 +128,7 @@ namespace Base.Rulesets.Straight.Rulesets.Objects.Parsers {
                 if (result == null)
                     throw new InvalidOperationException(@"Unknown hit object type " + type);
 
-                result.StartTime = Convert.ToDouble(split[2]);
+                result.StartTime = float.Parse(split[2], CultureInfo.InvariantCulture.NumberFormat);
                 //result.Samples = convertSoundType(soundType, bankInfo);
 
                 return result;

@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class DrawableNote : DrawableStraightHitObject<Note> {
 
-    internal new DrawableNote construct(Note hitObject, Pitch pitch) {
-        base.construct(hitObject, pitch);
-        return this;
+    private void construct(Note hitObject, Pitch pitch) {
+        Pitch = pitch;
+        HitObject = hitObject;
     }
 }

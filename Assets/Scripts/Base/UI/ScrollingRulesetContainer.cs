@@ -7,6 +7,7 @@ using Base.Rulesets.Objects.Drawables;
 using Base.Rulesets.Straight.UI;
 using Base.Sheetmusics;
 using Base.Rulesets.Timing;
+using Base.Rulesets.Objects;
 
 namespace Base.Rulesets.UI {
     public abstract class ScrollingRulesetContainer<TPlayField, TObject> : RulesetContainer<TPlayField, TObject>

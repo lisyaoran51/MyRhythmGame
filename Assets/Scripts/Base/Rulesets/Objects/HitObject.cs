@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using Base.Sheetmusics;
 using UnityEngine;
 using Base.Utils;
+using Base.Audio;
 
 namespace Base.Rulesets.Objects {
-    public class HitObject : ChildAddable {
+    public class HitObject{
 
         public double StartTime;
 

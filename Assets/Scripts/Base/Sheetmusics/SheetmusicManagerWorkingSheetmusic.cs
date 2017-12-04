@@ -1,4 +1,5 @@
 ﻿
+using Base.Sheetmusics.Formats;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,10 @@ namespace Base.Sheetmusics {
         public SheetmusicManagerWorkingSheetmusic(SheetmusicInfo sheetmusicInfo) : base(sheetmusicInfo) {
         }
 
+        /// <summary>
+        /// 當workingSheetmusic的sheetmusic是null時，就會呼叫GetSheetmusic來擺進Sheetmusic裡
+        /// </summary>
+        /// <returns></returns>
         protected override Sheetmusic GetSheetmusic() {
             try {
                 Sheetmusic sheetmusic;

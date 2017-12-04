@@ -4,7 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Drawable : ChildAddable {
-    
+    protected bool isSprite;
+    protected SpriteRenderer spriteRenderer;
+    protected CanvasRenderer canvasRenderer;
+
+    public string DrawableName { protected set; get; }
+
+    private void construct() {
+        DrawableName = GetType().ToString();
+    }
+    private void load(ViewConfig viewConfig) {
+        isSprite = viewConfig.Config(this);
+    }
 }
 
 

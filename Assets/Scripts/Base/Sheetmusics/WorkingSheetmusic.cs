@@ -23,7 +23,7 @@ namespace Base.Sheetmusics {
             get {
                 if (sheetmusic != null) return sheetmusic;
 
-                sheetmusic = GetSheetmusic() ?? new Sheetmusic();
+                sheetmusic = GetSheetmusic();
 
                 // use the database-backed info.
                 sheetmusic.SheetmusicInfo = SheetmusicInfo;

@@ -1,4 +1,5 @@
-﻿using Base.Sheetmusics;
+﻿using Base.Rulesets;
+using Base.Sheetmusics;
 using Base.Utils;
 using System;
 using System.Collections;
@@ -18,26 +19,30 @@ namespace Base.UI{
         private WorkingSheetmusic workingSheetmusic;
 
         public WorkingSheetmusic WorkingSheetmusic {
+            protected set{
+                workingSheetmusic = value;
+            }
             get {
                 return workingSheetmusic;
             }
         }
 
-        private Ruleset ruleset;
+        private RulesetInfo rulesetInfo;
 
-		public Ruleset Ruleset{
+		public RulesetInfo RulesetInfo{
+            
 			get{
-				return ruleset;
+				return rulesetInfo;
 			}
 		}
 
-        
-        
 
-        internal void load(Transform transform, UI.Screen lastScreen) {
-            workingSheetmusic = lastScreen.workingSheetmusic;
-            ruleset = lastScreen.Ruleset;
+
+
+        private void load(AppBase appBase) {
+            rulesetInfo = appBase.RulesetInfo;
+            workingSheetmusic = appBase.WorkingSheetmusic;
         }
-        
+
     }
 }

@@ -22,20 +22,18 @@ namespace Base.Play{
 		public PlayField PlayField;
 
         
-        private void load(Screen lastScreen) {
+        private void load() {
             
             Sheetmusic sheetmusic = WorkingSheetmusic.Sheetmusic;
 
-            rulesetInfo = sheetmusic.SheetmusicInfo.RulesetInfo;
-            var rulesetInstance = rulesetInfo.CreateInstance(this);
+            rulesetInfo = RulesetInfo ?? sheetmusic.SheetmusicInfo.RulesetInfo;
+            var rulesetInstance = rulesetInfo.CreateInstance();
 
             RulesetContainer = rulesetInstance.CreateRulesetContainerWith(
-                WorkingSheetmusic, 
-                Ruleset.ID == sheetmusic.SheetmusicInfo.Ruleset.ID);
+                WorkingSheetmusic,
+                rulesetInfo.ID == sheetmusic.SheetmusicInfo.RulesetID);
 
-
-            scoreProcessor = RulesetContainer.CreateScoreProcessor();
-
+            //scoreProcessor = RulesetContainer.CreateScoreProcessor();
 
             AddChild(RulesetContainer);
         }

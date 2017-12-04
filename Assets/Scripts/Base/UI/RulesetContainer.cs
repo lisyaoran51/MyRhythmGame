@@ -1,4 +1,5 @@
-﻿using Base.Rulesets.Objects;
+﻿using Base.Rulesets;
+using Base.Rulesets.Objects;
 using Base.Rulesets.Objects.Drawables;
 using Base.Sheetmusics;
 using Base.Utils;
@@ -24,7 +25,10 @@ namespace Base.UI {
 
         public WorkingSheetmusic WorkingSheetmusic;
 
-
+        /// <summary>
+        /// Whether the specified beatmap is assumed to be specific to the current ruleset.
+        /// </summary>
+        protected readonly bool IsForCurrentRuleset;
 
         /// <summary>
         /// Creates a converter to convert Beatmap to a specific mode.

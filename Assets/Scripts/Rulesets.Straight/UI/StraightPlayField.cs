@@ -9,19 +9,23 @@ using System;
 namespace Base.Rulesets.Straight.UI {
     public class StraightPlayField : ScrollingPlayField {
 
+        public Pitch StartPitch;
+
         public int ColumnCount;
 
         public FlowContainer<Column> ColumnArranger;
 
         public List<Column> Columns;
 
-        private void construct(int availableColumns) {
-            
+        private void construct(Pitch startPitch, int availableColumns) {
+
+            StartPitch = startPitch;
             // Column
             ColumnCount = availableColumns;
 
             for (int i = 0; i < ColumnCount; i++) {
-                Column c = New<Column>(new object[] { VisibleTimeRange }, "Column" + Columns.Count);
+
+                Column c = New<Column>(new object[] { startPitch + i, VisibleTimeRange }, "Column " + (startPitch + i));
                 AddChild(c);
                 ColumnArranger.Add(c);
                 Columns.Add(c);

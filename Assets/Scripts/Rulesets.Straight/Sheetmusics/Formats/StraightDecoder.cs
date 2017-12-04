@@ -115,24 +115,15 @@ namespace Base.Rulesets.Straight.Sheetmusics.Formats {
                 //case @"StackLeniency":
                 //    beatmap.BeatmapInfo.StackLeniency = float.Parse(pair.Value, NumberFormatInfo.InvariantInfo);
                 //    break;
-                //case @"Mode":
-                //    beatmap.BeatmapInfo.RulesetID = int.Parse(pair.Value);
-                //
-                //    switch (beatmap.BeatmapInfo.RulesetID) {
-                //        case 0:
-                //            parser = new Rulesets.Objects.Legacy.Osu.ConvertHitObjectParser();
-                //            break;
-                //        case 1:
-                //            parser = new Rulesets.Objects.Legacy.Taiko.ConvertHitObjectParser();
-                //            break;
-                //        case 2:
-                //            parser = new Rulesets.Objects.Legacy.Catch.ConvertHitObjectParser();
-                //            break;
-                //        case 3:
-                //            parser = new Rulesets.Objects.Legacy.Mania.ConvertHitObjectParser();
-                //            break;
-                //    }
-                //    break;
+                case @"Mode":
+                    sheetmusic.SheetmusicInfo.RulesetID = int.Parse(pair.Value);
+                
+                    switch (sheetmusic.SheetmusicInfo.RulesetID) {
+                        case 0:
+                            parser = new Base.Rulesets.Straight.Rulesets.Objects.Parsers.ConvertHitObjectParser();
+                            break;
+                    }
+                    break;
                 //case @"LetterboxInBreaks":
                 //    beatmap.BeatmapInfo.LetterboxInBreaks = int.Parse(pair.Value) == 1;
                 //    break;
@@ -174,10 +165,10 @@ namespace Base.Rulesets.Straight.Sheetmusics.Formats {
                 case @"Tags":
                     sheetmusic.SheetmusicInfo.Metadata.Tags = pair.Value;
                     break;
-                case @"BeatmapID":
+                case @"SheetmusicID":
                     sheetmusic.SheetmusicInfo.OnlineSheetmusicID = int.Parse(pair.Value);
                     break;
-                case @"BeatmapSetID":
+                case @"SheetmusicSetID":
                     sheetmusic.SheetmusicInfo.OnlineSheetmusicSetID = int.Parse(pair.Value);
                     metadata.OnlineSheetmusicSetID = int.Parse(pair.Value);
                     break;
@@ -208,12 +199,13 @@ namespace Base.Rulesets.Straight.Sheetmusics.Formats {
         }
 
         private void handleTimingPoints(Sheetmusic sheetmusic, string line) {
+            // 音 時間 長度 加速 三分/四分 音量 時間改變
             string[] split = line.Split(',');
 
             int column = int.Parse(split[0].Trim());
-            double time = double.Parse(split[1].Trim());
-            double noteLength = double.Parse(split[2].Trim());
-            double speedMultiplier = noteLength < 0 ? 100.0 / -noteLength : 1;
+            float time = float.Parse(split[1].Trim());
+            float noteLength = float.Parse(split[2].Trim());
+            float speedMultiplier = noteLength < 0 ? 100f / -noteLength : 1;
 
             TimeSignatures timeSignature = TimeSignatures.SimpleQuadruple;
             if (split.Length >= 4)

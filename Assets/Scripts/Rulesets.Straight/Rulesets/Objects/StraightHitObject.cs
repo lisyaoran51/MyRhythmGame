@@ -1,4 +1,5 @@
-﻿using Base.Rulesets.Straight.Rulesets.Objects.Types;
+﻿using Base.Audio;
+using Base.Rulesets.Straight.Rulesets.Objects.Types;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Base.Rulesets.Straight.Rulesets.Objects {
         }
 
         public virtual int Column { get; set; }
+
+        public Pitch Pitch;
 
         public SampleInfoList Samples;
     }

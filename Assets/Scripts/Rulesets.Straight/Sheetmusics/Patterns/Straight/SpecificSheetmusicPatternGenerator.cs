@@ -28,8 +28,8 @@ namespace Base.Rulesets.Straight.Sheetmusics.Patterns.Straight {
                     StartTime = HitObject.StartTime,
                     Duration = endTimeData.Duration,
                     Column = column,
-                    Head = { Samples = sampleInfoListAt(HitObject.StartTime) },
-                    Tail = { Samples = sampleInfoListAt(endTimeData.EndTime) },
+                    //Head = { Samples = sampleInfoListAt(HitObject.StartTime) },
+                    //Tail = { Samples = sampleInfoListAt(endTimeData.EndTime) },
                 });
             } else if (positionData != null) {
                 pattern.Add(new Note {

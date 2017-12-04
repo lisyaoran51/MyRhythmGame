@@ -1,4 +1,5 @@
-﻿using Base.Rulesets.Objects;
+﻿using Base.IO.Serialization;
+using Base.Rulesets.Objects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,11 +16,13 @@ namespace Base.Sheetmusics {
         // The HitObjects this SheetMusic contains.
         public List<T> HitObjects = new List<T>();
 
-        public Sheetmusic(Sheetmusic original) {
-            SheetmusicInfo = original.SheetmusicInfo;
-            ControlPointInfo = original.ControlPointInfo;
-            SheetmusicMetadata = original.SheetmusicMetadata;
-            HitObjects = original.HitObjects;
+        public Sheetmusic(Sheetmusic<T> original = null) {
+            if(original != null) {
+                SheetmusicInfo = original.SheetmusicInfo.DeepClone();
+                ControlPointInfo = original.ControlPointInfo;
+                SheetmusicMetadata = original.SheetmusicMetadata;
+                HitObjects = original.HitObjects;
+            }
         }
     }
 

@@ -57,3 +57,15 @@ RulesetContainer.converter.Convert(WorkingSheetmusic.Sheetmusic); ->
 
 寫完converter和proccessor
 				
+
+11/26
+決定把view跟object分開，排版都delegate給view
+把view寫個樣本，接下來要視著讓整個遊戲跑跑看，先把前一個load樂譜的Scene寫好
+把import那邊寫好，現在要把sheetmusicManager加入Main中
+
+11/28
+把import順一遍，順到decode完蛋是忘了加path到info裡
+
+11/29
+現在是把ruleset寫在sheetmusic manager裡，之後應該寫成直接讀檔案來輸入ruleset
+順道rulesetcontainer的loadobject那

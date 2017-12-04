@@ -19,7 +19,7 @@ namespace Base.Rulesets.Objects.Drawables {
         }
     }
 
-    public class DrawableHitObject : ChildAddable {
+    public class DrawableHitObject : Drawable {
 
         public HitObject HitObject;
         

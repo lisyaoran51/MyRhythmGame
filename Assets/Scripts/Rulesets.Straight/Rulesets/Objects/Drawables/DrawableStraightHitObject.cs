@@ -1,5 +1,5 @@
 ﻿using Base.Rulesets.Straight;
-using Rulesets.Straight.Rulesets.Object.Drawable;
+using Base.Rulesets.Straight.Rulesets.Objects.Drawables;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +11,7 @@ public class DrawableStraightHitObject<TObject> : DrawableScrollingHitObject<Str
     where TObject : StraightHitObject
 {
 
-    protected Pitch Pitch;
+    public Pitch Pitch;
 
     public new TObject HitObject;
 

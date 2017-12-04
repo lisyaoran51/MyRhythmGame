@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControlPoint {
-    public double StartTime { get; internal set; }
+    public float StartTime { get; internal set; }
 
 }
