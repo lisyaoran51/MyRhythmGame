@@ -10,7 +10,7 @@ namespace Base.UI {
     public abstract class ScrollingPlayField : PlayField {
 
 
-        public double VisibleTimeRange = 1000;
+        public float VisibleTimeRange = 1000f;
 
         internal new ScrollingHitObjectContainer HitObjects;
 

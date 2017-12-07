@@ -69,3 +69,17 @@ RulesetContainer.converter.Convert(WorkingSheetmusic.Sheetmusic); ->
 11/29
 現在是把ruleset寫在sheetmusic manager裡，之後應該寫成直接讀檔案來輸入ruleset
 順道rulesetcontainer的loadobject那
+
+12/7
+hitobject的column是什麼時候設的?
+TargetLineHeight要擺在哪?
+順完
+debug:沒有自動load
+getmethod只有拿到null
+getmethod要加上BindingFlags.NonPublic | BindingFlags.Instance，才讀的到private
+
+為了讓loader傳送原本的screen，而不是把原本的screen裡面讀出來擺在自己身上，所以把screen改成可以
+擺在loader身上的sttribute，方法是先將screen轉換成不繼承monobehavior的intangible，在擺入loader
+到新的場景時再cache這個intangible screen
+
+debug:在filereader的filename出錯

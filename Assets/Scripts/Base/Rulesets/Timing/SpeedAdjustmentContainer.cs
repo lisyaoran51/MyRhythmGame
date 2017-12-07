@@ -8,7 +8,7 @@ using Base.Utils;
 namespace Base.Rulesets.Timing {
     public class SpeedAdjustmentContainer : ChildAddable {
 
-        public double VisibleTimeRange;
+        public float VisibleTimeRange;
 
         public ControlPoint ControlPoint;
 
@@ -23,19 +23,17 @@ namespace Base.Rulesets.Timing {
         private ScrollingContainer scrollingContainer;
 
 
-        internal SpeedAdjustmentContainer construct(ControlPoint controlPoint) {
+        private void construct(ControlPoint controlPoint) {
 
             ControlPoint = controlPoint;
             scrollingContainer = CreateScrollingContainer();
             scrollingContainer.ControlPoint = controlPoint;
             scrollingContainer.VisibleTimeRange = VisibleTimeRange;
-
-            return this;
+            AddChild(scrollingContainer);
         }
 
         private ScrollingContainer CreateScrollingContainer() {
-            return ((LinearScrollingContainer)New("LinearScrollingContainer"))
-                .construct(ControlPoint);
+            return New<LinearScrollingContainer>(new object[] { ControlPoint });
         }
 
         internal void Add(DrawableHitObject hitObject) {

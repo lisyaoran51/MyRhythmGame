@@ -14,7 +14,7 @@ namespace Base.Utils {
 
         public bool IsLoaded { get { return loadState >= LoadState.Loaded;  } }
 
-        private volatile LoadState loadState;
+        private volatile LoadState loadState = LoadState.NotLoaded;
 
         /// <summary>
         /// Describes the current state of this Drawable within the loading pipeline.
@@ -26,7 +26,7 @@ namespace Base.Utils {
         private Dictionary<Type, ObjectActivator> activators = new Dictionary<Type, ObjectActivator>();
 
         private MethodInfo getLoader(Type type) {
-            return type.GetMethod("load");
+            return type.GetMethod("load", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
         private void registerLoad(Type type) {
@@ -38,7 +38,7 @@ namespace Base.Utils {
             var loadMethods = new List<MethodInfo>();
 
             for (Type t = type; t != typeof(Newable); t = t.BaseType) {
-                MethodInfo load = getLoader(type);
+                MethodInfo load = getLoader(t);
                 if (load != null) {
                     loadMethods.Insert(0, load);
                 }
@@ -98,6 +98,17 @@ namespace Base.Utils {
                 throw new InvalidOperationException(typeof(T).Name + " loader failed.");
 
             activator(instance);
+        }
+
+        public void LoadAsync() {
+            /*
+             * 這邊的意思跟 Load<child.type>(child); 一樣，只是c#不支援動態的T
+             */
+            Type genericType = Assembly.GetExecutingAssembly().GetType(this.GetType().ToString());
+            typeof(ChildAddable)
+                .GetMethod("Load")
+                .MakeGenericMethod(genericType)
+                .Invoke(this, new object[] { this });
         }
     }
 }

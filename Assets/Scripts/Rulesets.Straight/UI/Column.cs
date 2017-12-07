@@ -13,7 +13,7 @@ namespace Base.Rulesets.Straight.UI {
             HitObjects.Add(hitObject);
         }
 
-        private void construct(Pitch pitch, double visibleTimeRange) {
+        private void construct(Pitch pitch, float visibleTimeRange) {
             Pitch = pitch;
             VisibleTimeRange = visibleTimeRange;
         }

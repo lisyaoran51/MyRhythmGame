@@ -23,10 +23,10 @@ namespace Base.Tests {
             AddChild(SongSelect);
             
             WorkingSheetmusic = SongSelect.Select(s.SheetmusicInfos[0]);
+            // 把SheetmusicManager和WorkingSheetmusic load進自己裡面
+            LoadAsync();
 
-            Loader loader = New<Loader>(null);
-            AddChild(loader);
-            loader.transform.parent = null;
+            Loader loader = New<Loader>(new object[] { SongSelect });
 
             SceneManager.LoadScene("Play");
         }

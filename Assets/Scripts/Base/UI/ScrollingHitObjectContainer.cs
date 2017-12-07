@@ -10,7 +10,7 @@ using Base.Rulesets.Timing;
 namespace Base.UI {
     public class ScrollingHitObjectContainer : HitObjectContainer {
 
-        public double VisibleTimeRange;
+        public float VisibleTimeRange;
 
         protected new List<DrawableScrollingHitObject<ScrollingHitObject>> hitObjects;
 

@@ -35,7 +35,7 @@ namespace Base.Sheetmusics {
         private Texture background;
         public Texture Background {
             get {
-                return background ?? (background = GetBackground());
+                return null;//background ?? (background = GetBackground());
                 
             }
         }
@@ -44,7 +44,7 @@ namespace Base.Sheetmusics {
             var t = track;
             if (t == null) return;
 
-            t.ResetSpeedAdjustments();
+            //t.ResetSpeedAdjustments();
         }
 
         private Track track;
@@ -55,7 +55,7 @@ namespace Base.Sheetmusics {
                     if (track != null) return track;
 
                     // we want to ensure that we always have a track, even if it's a fake one.
-                    track = GetTrack() ?? new TrackVirtual();
+                    //track = GetTrack() ?? new TrackVirtual();
 
                     applyRateAdjustments();
                     return track;

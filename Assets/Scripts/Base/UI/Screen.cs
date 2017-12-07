@@ -10,7 +10,7 @@ using Utils.Types;
 namespace Base.UI{
 	
 
-	public class Screen : ChildAddable {
+	public class Screen : ChildAddable, IAsIntangible<IntangibleScreen> {
 
         protected Screen lastScreen;
 
@@ -39,9 +39,14 @@ namespace Base.UI{
 
 
 
-        private void load(AppBase appBase) {
-            rulesetInfo = appBase.RulesetInfo;
-            workingSheetmusic = appBase.WorkingSheetmusic;
+        private void load(IntangibleScreen lastScreen) {
+            rulesetInfo = lastScreen.RulesetInfo;
+            workingSheetmusic = lastScreen.WorkingSheetmusic;
+        }
+
+
+        public IntangibleScreen AsIntangible() {
+            return new IntangibleScreen(rulesetInfo, workingSheetmusic);
         }
 
     }

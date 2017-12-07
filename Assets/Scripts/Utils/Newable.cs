@@ -16,7 +16,7 @@ namespace Base.Utils {
 
         // 目前寫法，一層class只能有一個construct
         private MethodInfo getConstructor(Type type) {
-            return type.GetMethod("construct");
+            return type.GetMethod("construct", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
         private void registerConstruct(Type type)
@@ -29,7 +29,7 @@ namespace Base.Utils {
             var constructMethods = new List<KeyValuePair<MethodInfo, int>>();
 
             for (Type t = type; t != typeof(MonoBehaviour); t = t.BaseType) {
-                MethodInfo construct = getConstructor(type);
+                MethodInfo construct = getConstructor(t);
                 if (construct != null) {
                     int paramLen = construct.GetParameters().Length;
                     constructMethods.Insert(0, new KeyValuePair<MethodInfo, int>(construct, paramLen));
@@ -44,7 +44,8 @@ namespace Base.Utils {
 
                 return new Action<object, object[]>((_instance, _param) => {
                     var thisParam = new object[len];
-                    Array.Copy(_param, 0, thisParam, 0, len);
+                    if(_param != null)
+                        Array.Copy(_param, 0, thisParam, 0, len);
                     met.Invoke(_instance, thisParam);
                 });
             }).ToList();
@@ -65,7 +66,8 @@ namespace Base.Utils {
              * 然後return出去
              */
             GameObject newObject = new GameObject();
-            newObject.name = name ?? typeof(T).ToString();
+            name = name ?? typeof(T).ToString();
+            newObject.name = name.Split('.').Last();
             T script = newObject.AddComponent<T>();
             /* 
              * 註冊這個腳本的constructor，然後照順序執行

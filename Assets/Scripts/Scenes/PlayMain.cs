@@ -4,6 +4,7 @@ using UnityEngine;
 using Base.Play;
 using Base.Utils;
 using Base.Utils.Types;
+using Base.Rulesets;
 
 namespace Base.Scenes {
     public class PlayMain : AppBase {
@@ -16,9 +17,12 @@ namespace Base.Scenes {
         
 
         void Start() {
+
+            var loadMethods = new List<int>();
+            
+
             Loader loader = Loader.GetComponent<Loader>();
-            WorkingSheetmusic = loader.WorkingSheetmusic;
-            Ruleset = loader.Ruleset;
+            Cache(loader.LastScreen);
 
             AddChild(Player = New<Player>(null));
         }

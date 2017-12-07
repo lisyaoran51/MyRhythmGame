@@ -21,7 +21,8 @@ namespace Base.Play{
 
 		public PlayField PlayField;
 
-        
+        private void construct() { } //實驗
+
         private void load() {
             
             Sheetmusic sheetmusic = WorkingSheetmusic.Sheetmusic;

@@ -29,7 +29,7 @@ namespace Base.Sheetmusics {
     public class Sheetmusic : Sheetmusic<HitObject> {
        
 
-        public Sheetmusic(Sheetmusic original)
+        public Sheetmusic(Sheetmusic original = null)
             : base(original) {
         }
     }

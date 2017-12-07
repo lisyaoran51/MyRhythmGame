@@ -37,7 +37,7 @@ namespace Base.Rulesets.Straight.UI {
             }
             if (holdNote != null) {
 
-                return New<DrawableHoldNote>(new object[] { note, pitch }, noteName);
+                return null;//New<DrawableHoldNote>(new object[] { note, pitch }, noteName);
             }
             return null;
         }

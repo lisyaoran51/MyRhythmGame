@@ -17,10 +17,10 @@ public class LinearScrollingContainer : ScrollingContainer {
 
     }
 
-    private void load(ScreenConfig screenConfig) {
-        screenHeight = screenConfig.ScreenHeight;
+    private void load(FrameworkConfigManager config) {
+        //screenHeight = config.ScreenHeight;
 
         speed = -screenHeight / VisibleTimeRange;
-        transform.position = new Vector2(0f, speed * ControlPoint.StartTime + TargetLineHeight);
+        //transform.position = new Vector2(0f, speed * ControlPoint.StartTime + TargetLineHeight);
     }
 }

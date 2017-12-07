@@ -16,7 +16,10 @@ namespace Base.Utils {
         /// </summary>
         /// <returns>有父物件腳本就回傳，沒有就null</returns>
         public Loadable GetParent() {
-            var parents = GetComponentsInParent<Loadable>() ?? new Loadable[0]; ;
+            var parent = transform.parent;
+            if (parent == null) return null;
+
+            var parents = parent.GetComponents<Loadable>() ?? new Loadable[0]; ;
             if (parents.Length > 1) {
                 throw new InvalidOperationException(
                               @"Object " + this.name + "'s parent has more than 1 script.");
