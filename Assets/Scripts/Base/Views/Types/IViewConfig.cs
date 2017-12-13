@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IViewConfig {
-    bool Config(Drawable drawable);
+    void Config(Drawable drawable);
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Base.Rulesets.Straight.Configurations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class LinearScrollingContainer : ScrollingContainer {
     private float screenHeight;
     // Update is called once per frame
     void Update () {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        //transform.Translate(Vector2.up * speed * Time.deltaTime);
 	}
 
     private void construct(ControlPoint controlPoint) {
@@ -17,10 +18,10 @@ public class LinearScrollingContainer : ScrollingContainer {
 
     }
 
-    private void load(FrameworkConfigManager config) {
+    private void load() {
         //screenHeight = config.ScreenHeight;
 
-        speed = -screenHeight / VisibleTimeRange;
+        //speed = -screenHeight / VisibleTimeRange;
         //transform.position = new Vector2(0f, speed * ControlPoint.StartTime + TargetLineHeight);
     }
 }

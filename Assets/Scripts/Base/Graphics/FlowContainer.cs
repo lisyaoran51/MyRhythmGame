@@ -4,15 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class FlowContainer<T> : ChildAddable 
-    where T : Drawable{
+namespace Base.Graphics {
+    public abstract class FlowContainer<T> : ChildAddable
+        where T : Drawable {
 
-    public List<T> Drawables {
-        private set; get;
-    }
-    
+        public List<T> Drawables {
+            private set; get;
+        }
 
-    internal void Add(T drawable) {
-        Drawables.Add(drawable);
+        public FlowContainer() {
+            Drawables = new List<T>();
+        }
+
+        internal void Add(T drawable) {
+            Drawables.Add(drawable);
+        }
     }
 }

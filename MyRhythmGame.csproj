@@ -84,9 +84,10 @@
     <Compile Include="Assets\Scripts\Base\AppBase.cs" />
     <Compile Include="Assets\Scripts\Base\Audio\SampleInfoList.cs" />
     <Compile Include="Assets\Scripts\Base\Audio\Track.cs" />
-    <Compile Include="Assets\Scripts\Base\Configuration\ConfigManager.cs" />
-    <Compile Include="Assets\Scripts\Base\Configuration\FrameworkConfigManager.cs" />
+    <Compile Include="Assets\Scripts\Base\Configurations\ConfigManager.cs" />
+    <Compile Include="Assets\Scripts\Base\Configurations\FrameworkConfigManager.cs" />
     <Compile Include="Assets\Scripts\Base\Graphics\Drawable.cs" />
+    <Compile Include="Assets\Scripts\Base\Graphics\FillFlowContainer.cs" />
     <Compile Include="Assets\Scripts\Base\Graphics\FlowContainer.cs" />
     <Compile Include="Assets\Scripts\Base\IO\Serialization\IJsonSerializable.cs" />
     <Compile Include="Assets\Scripts\Base\Judgements\Judgement.cs" />
@@ -131,7 +132,7 @@
     <Compile Include="Assets\Scripts\Base\Views\Types\IViewConfig.cs" />
     <Compile Include="Assets\Scripts\Base\Views\View.cs" />
     <Compile Include="Assets\Scripts\Base\Views\ViewConfig.cs" />
-    <Compile Include="Assets\Scripts\Rulesets.Straight\Configuration\StraightConfigManager.cs" />
+    <Compile Include="Assets\Scripts\Rulesets.Straight\Configurations\StraightConfigManager.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableHoldNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableStraightHitObject.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Assets\Scripts\Utils\Types\IAddChild.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IAsIntangible.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\ICachable.cs" />
+    <Compile Include="Assets\Scripts\Utils\Types\IConfigManager.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IGetParent.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IInjectable.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IIntangible.cs" />

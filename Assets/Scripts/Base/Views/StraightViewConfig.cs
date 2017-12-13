@@ -6,6 +6,7 @@ using UnityEngine;
 public class StraightView : ViewConfig {
 
 	public StraightView() {
+        /*
         views.Add(
             "DrawableNote", new View {
                 SpritePath = "DrawableNote",
@@ -23,6 +24,7 @@ public class StraightView : ViewConfig {
                     return true;
                 }
             }
-            );
+        );
+        */
     }
 }

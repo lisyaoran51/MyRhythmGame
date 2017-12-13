@@ -23,9 +23,9 @@ namespace Base.Sheetmusics.IO {
         public IEnumerable<string> Filenames {
             private set { }
             get {
-                return Directory.GetFiles(path, "*", SearchOption.AllDirectories).Select(f => {
-                    string p = path.Replace(Path.DirectorySeparatorChar, '/').TrimEnd('/');
-                    string folder = f.Replace(Path.DirectorySeparatorChar, '/').TrimEnd('/');
+                return Directory.GetFiles(path, "*", SearchOption.AllDirectories).Select(p => {
+                    p = p.Replace(Path.DirectorySeparatorChar, '/').TrimEnd('/');
+                    string folder = path.Replace(Path.DirectorySeparatorChar, '/').TrimEnd('/');
                     
                     return p.Substring(folder.Length + 1);
                 }).ToArray();

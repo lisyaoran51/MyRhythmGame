@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Tests/TestLoadSheetmusic.unity
+    guid: cb37b156f894661479e5992caab671fa
+  - enabled: 1
+    path: Assets/Scenes/Play.unity
+    guid: 047e544be30d624469aec7973223e9ae

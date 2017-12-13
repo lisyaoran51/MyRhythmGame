@@ -32,7 +32,7 @@ namespace Base.Sheetmusics {
         public void Import(params string[] paths) {
             foreach (string path in paths) {
                 using (FileReader reader = new FileReader(path))  // LegacyFilesystemReader
-                    import(reader);
+                    SheetmusicInfos = import(reader); // TODO: 把讀取的普應該存在資料庫，而不是記憶體
             }
         }
 

@@ -18,13 +18,14 @@ namespace Base.Tests {
             SheetmusicManager s = new SheetmusicManager();
             s.Import(@"D:\Users\TsaiJiaYu\documents\MyRhythmGame\test");
             Cache(s);
-            
+            Cache(new IntangibleScreen(new RulesetInfo("Base.Rulesets.Straight.Rulesets.StraightRuleset"), null));
+
             SongSelect = New<SongSelect>(null);
             AddChild(SongSelect);
             
             WorkingSheetmusic = SongSelect.Select(s.SheetmusicInfos[0]);
             // 把SheetmusicManager和WorkingSheetmusic load進自己裡面
-            LoadAsync();
+            
 
             Loader loader = New<Loader>(new object[] { SongSelect });
 

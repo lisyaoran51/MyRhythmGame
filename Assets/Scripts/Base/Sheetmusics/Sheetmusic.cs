@@ -9,9 +9,9 @@ namespace Base.Sheetmusics {
     public class Sheetmusic<T>
             where T : HitObject 
     {
-        public SheetmusicInfo SheetmusicInfo;
-        public ControlPointInfo ControlPointInfo;
-        public SheetmusicMetadata SheetmusicMetadata;
+        public SheetmusicInfo SheetmusicInfo = new SheetmusicInfo();
+        public ControlPointInfo ControlPointInfo = new ControlPointInfo();
+        public SheetmusicMetadata SheetmusicMetadata = new SheetmusicMetadata();
 
         // The HitObjects this SheetMusic contains.
         public List<T> HitObjects = new List<T>();

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class ControlPointInfo : ControlPoint {
 
-    public List<ControlPoint> TimingControlPoints;
+    public List<ControlPoint> TimingControlPoints = new List<ControlPoint>();
     
 }

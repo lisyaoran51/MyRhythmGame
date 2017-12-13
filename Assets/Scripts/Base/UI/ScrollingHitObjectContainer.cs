@@ -27,8 +27,8 @@ namespace Base.UI {
             AddChild(speedAdjustmentContainer);
         }
 
-        internal ScrollingHitObjectContainer construct() {
-            throw new NotImplementedException();
+        private void construct() {
+            SpeedAdjustmentContainers = new List<SpeedAdjustmentContainer>();
         }
 
         public override void Add(DrawableHitObject hitObject) {

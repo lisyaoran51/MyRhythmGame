@@ -9,7 +9,7 @@ namespace Base.Scenes{
         public IntangibleScreen LastScreen;
         private void construct(UI.Screen screen) {
             LastScreen = screen.AsIntangible();
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 }

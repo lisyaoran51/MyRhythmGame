@@ -20,7 +20,8 @@ namespace Base.Sheetmusics {
                 Sheetmusic sheetmusic;
 
                 SheetmusicDecoder decoder;
-                using (var stream = new StreamReader((Application.dataPath +"/"+ SheetmusicInfo.Path))) {
+                // TODO: 把音樂擺的位置設成可變動的參數，應該是存在SheetmusicInfo，一開始就知道的path位置
+                using (var stream = new StreamReader((Application.dataPath +"/Resources/Sheetmusics/"+ SheetmusicInfo.Path))) {
                     decoder = SheetmusicDecoder.GetDecoder(stream);
                     sheetmusic = decoder.Decode(stream);
                 }

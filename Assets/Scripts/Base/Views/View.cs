@@ -25,9 +25,15 @@ public class View : IView {
     public SortingLayer Layer;
     public int Depth;
 
-    public delegate bool SpecificConfig(Drawable drawable);
+    public delegate void SpecificConfig(Drawable drawable);
 
     public SpecificConfig SpecificConfigFunc;
+
+    public View() {
+        SpecificConfigFunc = (d) => {
+            // no op
+        };
+    }
 
     public virtual bool Config(Drawable drawable) {
         

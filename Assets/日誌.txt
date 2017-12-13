@@ -83,3 +83,9 @@ getmethod要加上BindingFlags.NonPublic | BindingFlags.Instance，才讀的到p
 到新的場景時再cache這個intangible screen
 
 debug:在filereader的filename出錯
+
+12/8
+load以後的loader的screen不見了
+
+12/13
+把LinearScrollingContainer改成不管螢幕大小

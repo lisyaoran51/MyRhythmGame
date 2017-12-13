@@ -42,6 +42,7 @@ namespace Base.Sheetmusics.Formats {
                     Metadata = new SheetmusicMetadata(),
                     BaseDifficulty = new SheetmusicDifficulty(),
                 },
+
             };
 
             ParseFile(stream, sheetmusic);

@@ -21,6 +21,10 @@ namespace Base.Rulesets.Straight.Sheetmusics.Formats {
             AddDecoder<StraightDecoder>(@"straight file format v0");
         }
 
+        public StraightDecoder(string header) {
+            sheetmusicVersion = int.Parse(header.Substring(22));
+        }
+
         protected override void ParseFile(StreamReader stream, Sheetmusic sheetmusic) // 解碼
         {
             sheetmusic.SheetmusicInfo.SheetmusicVersion = sheetmusicVersion;

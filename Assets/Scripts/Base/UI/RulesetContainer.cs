@@ -1,4 +1,5 @@
-﻿using Base.Rulesets;
+﻿using Base.Configurations;
+using Base.Rulesets;
 using Base.Rulesets.Objects;
 using Base.Rulesets.Objects.Drawables;
 using Base.Sheetmusics;
@@ -21,7 +22,9 @@ namespace Base.UI {
 
         public Sheetmusic<TObject> Sheetmusic;
 
-        public PlayField PlayField;
+        public PlayField PlayField { get; private set; }
+
+        public PlayField PlayField2;
 
         public WorkingSheetmusic WorkingSheetmusic;
 
@@ -46,7 +49,7 @@ namespace Base.UI {
         }
 
         //TODO:RulesetContainer.construct
-        public void construct(WorkingSheetmusic workingSheetmusic, bool isForCurrentRuleset = true) {
+        private void construct(WorkingSheetmusic workingSheetmusic, bool isForCurrentRuleset = true) {
             WorkingSheetmusic = workingSheetmusic;
 
             SheetmusicConverter<TObject> converter = CreateSheetmusicConverter();
@@ -57,8 +60,9 @@ namespace Base.UI {
             processor.PostProcess(Sheetmusic);
         }
 
-        public void Load() {
+        private void load() {
             PlayField = CreatePlayfield();
+            AddChild(PlayField);
             loadObjects();
         }
 
@@ -96,10 +100,10 @@ namespace Base.UI {
         where TPlayField : PlayField
         where TObject : HitObject
     {
-        protected new TPlayField PlayField;
+        protected new TPlayField PlayField { get { return (TPlayField)base.PlayField; } }
 
-        public new void construct(WorkingSheetmusic workingSheetMusic, bool isForCurrentRuleset) {
-            PlayField = (TPlayField)base.PlayField;
+        private void construct(WorkingSheetmusic workingSheetMusic, bool isForCurrentRuleset) {
+            // no op?
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Base.Utils;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Drawable : ChildAddable {
@@ -11,10 +12,10 @@ public class Drawable : ChildAddable {
     public string DrawableName { protected set; get; }
 
     private void construct() {
-        DrawableName = GetType().ToString();
+        DrawableName = GetType().ToString().Split('.').Last();
     }
     private void load(ViewConfig viewConfig) {
-        isSprite = viewConfig.Config(this);
+        viewConfig.Config(this);
     }
 }
 

@@ -23,6 +23,8 @@ namespace Base.UI {
             // HitObjectContainer
             HitObjects = New<ScrollingHitObjectContainer>(null, "HitObjects");
             HitObjects.VisibleTimeRange = VisibleTimeRange;
+            AddChild(HitObjects);
+            NestedScrollingPlayField = new List<ScrollingPlayField>();
         }
 
         // when removing SpeedAdjustContainer, add hitobjects back to default SpeedAdjustContainer

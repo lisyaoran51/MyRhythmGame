@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Base.Sheetmusics {
-    public class SheetmusicMetadata : MonoBehaviour {
+    public class SheetmusicMetadata {
         public string Artist { get; internal set; }
         public string ArtistUnicode { get; internal set; }
         public string AudioFile { get; internal set; }
