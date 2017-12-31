@@ -6,40 +6,60 @@ using UnityEngine;
 using Base.Utils;
 
 namespace Base.Rulesets.Timing {
-    public class SpeedAdjustmentContainer : ChildAddable {
+    public class SpeedAdjustmentContainer<TObject> : Updated 
+        where TObject : ScrollingHitObject 
+    {
 
-        public float VisibleTimeRange;
+        public float VisibleTimeRange = 4f;
 
         public ControlPoint ControlPoint;
 
-        public DrawableScrollingHitObject<ScrollingHitObject> ScrollingHitObject;
+        //public DrawableScrollingHitObject<TObject> ScrollingHitObject;
 
-        public ScrollingContainer ScrollingContainer {
+        /// <summary>
+        /// The axes which the content of this container will scroll through.
+        /// </summary>
+        public Axes ScrollingAxes {
+            get { return scrollingContainer.ScrollingAxes; }
+            set { scrollingContainer.ScrollingAxes = value; }
+        }
+
+        public ScrollingContainer<TObject> ScrollingContainer {
             get {
                 return scrollingContainer;
             }
         }
 
-        private ScrollingContainer scrollingContainer;
+        private ScrollingContainer<TObject> scrollingContainer;
 
-
-        private void construct(ControlPoint controlPoint) {
-
+        public SpeedAdjustmentContainer(ControlPoint controlPoint) {
             ControlPoint = controlPoint;
+        }
+
+        protected override void load() {
             scrollingContainer = CreateScrollingContainer();
-            scrollingContainer.ControlPoint = controlPoint;
+            scrollingContainer.ControlPoint = ControlPoint;
             scrollingContainer.VisibleTimeRange = VisibleTimeRange;
-            AddChild(scrollingContainer);
         }
 
-        private ScrollingContainer CreateScrollingContainer() {
-            return New<LinearScrollingContainer>(new object[] { ControlPoint });
+        protected override void update() {
+            // no-op
+        }
+        
+        private ScrollingContainer<TObject> CreateScrollingContainer() {
+            return new LinearScrollingContainer<TObject>(ControlPoint) {
+                Parent = this.Parent
+            };
         }
 
-        internal void Add(DrawableHitObject hitObject) {
-            DrawableScrollingHitObject<ScrollingHitObject> s = (DrawableScrollingHitObject<ScrollingHitObject>)hitObject;
-            ScrollingHitObject = s;
-            ScrollingContainer.Add(s);
+        public void Add(DrawableScrollingHitObject<TObject> hitObject) {
+            if(ScrollingContainer != null)
+                ScrollingContainer.Add(hitObject);
+            else {
+                scrollingContainer = new LinearScrollingContainer<TObject>(ControlPoint);
+                ScrollingContainer.Add(hitObject);
+            }
+
         }
     }
 }

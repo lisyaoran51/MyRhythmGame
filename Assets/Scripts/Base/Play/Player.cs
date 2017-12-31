@@ -4,6 +4,8 @@ using UnityEngine;
 using Screen = Base.UI.Screen;
 using Base.Sheetmusics;
 using Base.UI;
+using Base.Scenes;
+using System.Linq;
 
 namespace Base.Play{
 
@@ -21,10 +23,12 @@ namespace Base.Play{
 
 		public PlayField PlayField;
 
-        private void construct() { } //實驗
+        protected new void construct() {
+            base.construct();
+        } //實驗
 
         private void load() {
-            
+
             Sheetmusic sheetmusic = WorkingSheetmusic.Sheetmusic;
 
             rulesetInfo = RulesetInfo ?? sheetmusic.SheetmusicInfo.RulesetInfo;
@@ -37,6 +41,7 @@ namespace Base.Play{
             //scoreProcessor = RulesetContainer.CreateScoreProcessor();
 
             AddChild(RulesetContainer);
+            
         }
 	}
 

@@ -142,14 +142,14 @@ namespace Base.Rulesets.Straight.Rulesets.Objects.Parsers {
 
         public HitObject CreateHit(int x, int y, bool combo) {
             return new ConvertHit {
-                Column = x,
+                Pitch = (Pitch)x,
                 NewCombo = combo,
             };
         }
 
         protected HitObject CreateHold(int x, int y, bool newCombo, double endTime) {
             return new ConvertHold {
-                Column = x,
+                Pitch = (Pitch)x,
                 EndTime = endTime
             };
         }

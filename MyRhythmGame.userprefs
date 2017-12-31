@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="MyRhythmGame.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tests\SongSelect.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\日誌.txt">
     <Files>
       <File FileName="Assets\日誌.txt" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Tests\SongSelect.cs" Line="1" Column="1" />

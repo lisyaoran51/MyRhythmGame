@@ -10,11 +10,15 @@ namespace Base.Rulesets.Objects.Drawables {
         where TObject : HitObject
     {
 
-        public new TObject HitObject;
+        public new TObject HitObject {
+            protected set { base.HitObject = value; }
+            get { return (TObject)base.HitObject; }
+        }
 
         public event Action<DrawableHitObject, Judgement> OnJudgement;
 
-        private void construct(TObject hitObject) {
+        protected void construct(TObject hitObject, int spriteIndex = 0) {
+            construct(spriteIndex);
             HitObject = hitObject;
         }
     }

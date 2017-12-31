@@ -7,16 +7,20 @@ using Base.Rulesets.Straight.Rulesets.Objects;
 using System;
 using Base.Rulesets.Objects.Drawables;
 
-public class DrawableStraightHitObject<TObject> : DrawableScrollingHitObject<StraightHitObject> 
+public class DrawableStraightHitObject<TObject> : DrawableScrollingHitObject<TObject>
     where TObject : StraightHitObject
 {
 
     public Pitch Pitch;
 
-    public new TObject HitObject;
+    public new TObject HitObject {
+        protected set { base.HitObject = value; }
+        get { return (TObject)base.HitObject; } }
 
-    private void construct(TObject hitObject, Pitch pitch) {
-        Pitch = pitch;
-        HitObject = hitObject;
+    protected void construct(TObject hitObject, int spriteIndex = 0) {
+        base.construct(hitObject, spriteIndex);
+
+        Pitch = hitObject.Pitch;
+        base.HitObject = hitObject;
     }
 }

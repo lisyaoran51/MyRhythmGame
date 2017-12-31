@@ -8,39 +8,79 @@ using System.Linq;
 using Base.Rulesets.Timing;
 
 namespace Base.UI {
-    public class ScrollingHitObjectContainer : HitObjectContainer {
+    public class ScrollingHitObjectContainer<TObject> : HitObjectContainer 
+        where TObject : ScrollingHitObject
+    {
 
         public float VisibleTimeRange;
 
-        protected new List<DrawableScrollingHitObject<ScrollingHitObject>> hitObjects;
+        //protected new List<DrawableScrollingHitObject<ScrollingHitObject>> hitObjects;
 
-        private List<SpeedAdjustmentContainer> speedAdjustmentContainers;
+        private List<SpeedAdjustmentContainer<TObject>> speedAdjustmentContainers = new List<SpeedAdjustmentContainer<TObject>>();
 
-        public List<SpeedAdjustmentContainer> SpeedAdjustmentContainers;
+        private List<SpeedAdjustmentContainer<TObject>> defaultSpeedAdjustments = new List<SpeedAdjustmentContainer<TObject>>();
 
-        private SpeedAdjustmentContainer defaultSpeedAdjustmentContainer;
+        public List<SpeedAdjustmentContainer<TObject>> SpeedAdjustmentContainers {
+            get { return speedAdjustmentContainers; }
+        }
 
         private Axes scrollingAxes;
 
-        public void AddSpeedAdjustment(SpeedAdjustmentContainer speedAdjustmentContainer) {
-            speedAdjustmentContainer.VisibleTimeRange = VisibleTimeRange;
-            AddChild(speedAdjustmentContainer);
+        public ScrollingHitObjectContainer(Axes scrollingAxes) {
+            this.scrollingAxes = scrollingAxes;
         }
 
-        private void construct() {
-            SpeedAdjustmentContainers = new List<SpeedAdjustmentContainer>();
+        public void AddSpeedAdjustment(SpeedAdjustmentContainer<TObject> speedAdjustmentContainer) 
+        {
+            speedAdjustmentContainer.Parent = Parent;
+            speedAdjustmentContainer.ScrollingAxes = scrollingAxes;
+            speedAdjustmentContainer.VisibleTimeRange = VisibleTimeRange;
+            SpeedAdjustmentContainers.Add(speedAdjustmentContainer);
+            /*
+             * 把default speed adjustment裡的元素拿出來，擺進現在的speed adjust裡
+             */
+            var defaultSpeedAdjust = adjustmentContainerAt(speedAdjustmentContainer.ControlPoint.StartTime, true);
+            speedAdjustmentContainer.Add(defaultSpeedAdjust.ScrollingContainer.ScrollingHitObject);
+            defaultSpeedAdjustments.Remove(defaultSpeedAdjust);
         }
 
         public override void Add(DrawableHitObject hitObject) {
-            adjustmentContainerAt(hitObject.HitObject.StartTime).Add(hitObject);
+            var h = hitObject as DrawableScrollingHitObject<TObject>;
+            if (h == null)
+                throw new ArgumentException("Failed to Add drawable hit object: input value should be in DrawableScrollingHitObject type.");
+
+            var speedAdjustment = adjustmentContainerAt(h.HitObject.StartTime);
+            if (speedAdjustment != null)
+                speedAdjustment.Add(h);
+            else {
+                speedAdjustment = new SpeedAdjustmentContainer<TObject>(
+                    new ControlPoint { StartTime = h.HitObject.StartTime }
+                );
+                speedAdjustment.Add(h);
+                defaultSpeedAdjustments.Add(speedAdjustment);
+            }
         }
 
-        private SpeedAdjustmentContainer adjustmentContainerAt(double startTime) {
-            return speedAdjustmentContainers.FindAll(delegate (SpeedAdjustmentContainer s) {
-                if (s.ControlPoint.StartTime == startTime) return true;
-                else return false;
-            }).FirstOrDefault<SpeedAdjustmentContainer>();
+        private SpeedAdjustmentContainer<TObject> adjustmentContainerAt(float startTime, bool findDefault = false) {
+            /*
+             * 先判斷要找default還是一般的speed adjust，然後去那一串尋找
+             */
+            var containers = findDefault ?
+                defaultSpeedAdjustments.FindAll(
+                delegate (SpeedAdjustmentContainer<TObject> s) {
+                    if (s.ControlPoint.StartTime.Equals(startTime)) return true;
+                    else return false;
+                })
+                :
+                SpeedAdjustmentContainers.FindAll(
+                delegate (SpeedAdjustmentContainer<TObject> s) {
+                    if (s.ControlPoint.StartTime.Equals(startTime)) return true;
+                    else return false;
+                });
 
+            if (containers.Count > 0)
+                return containers.FirstOrDefault<SpeedAdjustmentContainer<TObject>>();
+            else return null;
         }
     }
 }

@@ -6,9 +6,7 @@ using UnityEngine;
 
 namespace Base.Rulesets.Straight.Rulesets.Objects {
     public class StraightHitObject : ScrollingHitObject, IHasColumn {
-
-        public double StartTime;
-
+        
         public double StartBar {
             private set; get;// TODO:StartBar.get
         }
@@ -17,6 +15,15 @@ namespace Base.Rulesets.Straight.Rulesets.Objects {
 
         public Pitch Pitch;
 
-        public SampleInfoList Samples;
+        public bool IsBlackKey() {
+            if( ((int)Pitch) % 12 == 1 ||
+                ((int)Pitch) % 12 == 3 ||
+                ((int)Pitch) % 12 == 6 ||
+                ((int)Pitch) % 12 == 8 ||
+                ((int)Pitch) % 12 == 10 )
+                return true;
+            return false;
+        }
+        
     }
 }

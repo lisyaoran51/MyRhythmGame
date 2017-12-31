@@ -1,4 +1,5 @@
 ﻿using Base.Rulesets.Objects.Parsers;
+using Base.Rulesets.Straight.SheetMusics.ControlPoints;
 using Base.Sheetmusics;
 using Base.Sheetmusics.ControlPoints;
 using Base.Sheetmusics.Formats;
@@ -206,7 +207,7 @@ namespace Base.Rulesets.Straight.Sheetmusics.Formats {
             // 音 時間 長度 加速 三分/四分 音量 時間改變
             string[] split = line.Split(',');
 
-            int column = int.Parse(split[0].Trim());
+            Pitch pitch = (Pitch)int.Parse(split[0].Trim());
             float time = float.Parse(split[1].Trim());
             float noteLength = float.Parse(split[2].Trim());
             float speedMultiplier = noteLength < 0 ? 100f / -noteLength : 1;
@@ -248,9 +249,9 @@ namespace Base.Rulesets.Straight.Sheetmusics.Formats {
             //EffectControlPoint effectPoint = beatmap.ControlPointInfo.EffectPointAt(time);
 
             if (timingChange) {
-                sheetmusic.ControlPointInfo.TimingControlPoints.Add(new TimingControlPoint {
-                    Column = column,
-                    Time = time,
+                sheetmusic.ControlPointInfo.TimingControlPoints.Add(new StraightTimingControlPoint {
+                    Pitch = pitch,
+                    StartTime = time,
                     NoteLength = noteLength,
                     TimeSignature = timeSignature
                 });

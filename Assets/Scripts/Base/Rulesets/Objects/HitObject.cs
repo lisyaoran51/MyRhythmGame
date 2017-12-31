@@ -9,7 +9,7 @@ using Base.Audio;
 namespace Base.Rulesets.Objects {
     public class HitObject{
 
-        public double StartTime;
+        public float StartTime;
 
         public SampleInfoList Samples { get; internal set; }
 

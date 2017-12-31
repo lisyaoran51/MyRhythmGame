@@ -1,4 +1,5 @@
 ﻿using Base.Rulesets.Objects.Drawables;
+using Base.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,8 +8,12 @@ using UnityEngine;
 namespace Base.UI {
     public class PlayField : Drawable {
 
-        internal HitObjectContainer HitObjects;
-        
+        public HitObjectContainer HitObjects;
+
+        protected new void Update() {
+            base.Update();
+        }
+
         /// <summary>
         /// Triggered when a new <see cref="Judgement"/> occurs on a <see cref="DrawableHitObject"/>.
         /// </summary>

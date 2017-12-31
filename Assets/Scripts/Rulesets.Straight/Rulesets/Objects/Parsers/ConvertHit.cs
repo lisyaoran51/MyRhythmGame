@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Base.Rulesets.Straight.Rulesets.Objects.Parsers {
-    public class ConvertHit : HitObject, IHasColumn {
+    public class ConvertHit : Note, IHasColumn {
 
         public int Column { set; get; }
 

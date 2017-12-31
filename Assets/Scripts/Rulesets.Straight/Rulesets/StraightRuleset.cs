@@ -13,6 +13,7 @@ namespace Base.Rulesets.Straight.Rulesets {
         }
 
         public override RulesetContainer CreateRulesetContainerWith(WorkingSheetmusic sheetMusic, bool isForCurrentRuleset) {
+
             /*
              * 因為ruleset不是gameobject，但是又要進行new，所以要Delegate給一個gameobject來new，new完再刪掉gameobject
              */

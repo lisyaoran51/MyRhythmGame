@@ -1,4 +1,4 @@
-11/13
+﻿11/13
 建player
 寫CreateRulesetContainerWith
 
@@ -89,3 +89,19 @@ load以後的loader的screen不見了
 
 12/13
 把LinearScrollingContainer改成不管螢幕大小
+把hitobjectcontainer的gameobject都去掉
+bug: adjustmentcontainer是空的
+
+12/14
+run起來，要把drawablenot放到speedadjust裡
+
+12/18
+Scrolling HitObject Container的Speed Adjustment Containers是空的，要慢慢找出原因
+
+12/20
+會動了，但是輸出以後東西就都不見了
+停在Child Addable的Add Child的invoke前面
+結果是resource資料夾要整個複製過去build裡
+
+12/22
+https://www.alanzucconi.com/2015/10/07/how-to-integrate-arduino-with-unity/

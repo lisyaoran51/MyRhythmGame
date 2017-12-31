@@ -5,9 +5,11 @@ using UnityEngine;
 
 namespace Base.Scenes{
 
-	public class Loader : Newable {
+	public class Loader : Updatable {
         public IntangibleScreen LastScreen;
-        private void construct(UI.Screen screen) {
+        protected void construct(UI.Screen screen) {
+            construct();
+
             LastScreen = screen.AsIntangible();
             DontDestroyOnLoad(this.gameObject);
         }

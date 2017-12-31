@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: PlayField
+    uniqueID: 2623902619
+    locked: 0
+  - name: Column
+    uniqueID: 373585507
+    locked: 0
+  - name: HitObject
+    uniqueID: 3750897125
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

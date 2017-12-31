@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Base.UI {
 
-    public abstract class RulesetContainer : ChildAddable {
+    public abstract class RulesetContainer : Updatable {
         public Ruleset Ruleset;
     }
 
@@ -23,8 +23,6 @@ namespace Base.UI {
         public Sheetmusic<TObject> Sheetmusic;
 
         public PlayField PlayField { get; private set; }
-
-        public PlayField PlayField2;
 
         public WorkingSheetmusic WorkingSheetmusic;
 
@@ -49,7 +47,9 @@ namespace Base.UI {
         }
 
         //TODO:RulesetContainer.construct
-        private void construct(WorkingSheetmusic workingSheetmusic, bool isForCurrentRuleset = true) {
+        protected void construct(WorkingSheetmusic workingSheetmusic, bool isForCurrentRuleset = true) {
+            construct();
+
             WorkingSheetmusic = workingSheetmusic;
 
             SheetmusicConverter<TObject> converter = CreateSheetmusicConverter();
@@ -58,6 +58,9 @@ namespace Base.UI {
 
             Sheetmusic = converter.Convert(WorkingSheetmusic.Sheetmusic);
             processor.PostProcess(Sheetmusic);
+
+
+
         }
 
         private void load() {
@@ -102,7 +105,8 @@ namespace Base.UI {
     {
         protected new TPlayField PlayField { get { return (TPlayField)base.PlayField; } }
 
-        private void construct(WorkingSheetmusic workingSheetMusic, bool isForCurrentRuleset) {
+        protected new void construct(WorkingSheetmusic workingSheetMusic, bool isForCurrentRuleset) {
+            base.construct(workingSheetMusic, isForCurrentRuleset);
             // no op?
         }
     }

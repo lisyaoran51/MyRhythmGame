@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class View : IView {
 
-    public Vector2 Position;
-    public Vector2 Rotation;
-    public Vector2 Scale;
+    public Vector2 Position = new Vector2(0, 0);
+    public Vector2 Rotation = new Vector2(0, 0);
+    public Vector2 Scale = new Vector2(1f, 1f);
     public Axes RelativePositionAxes;
     public Axes RelativeScaleAxes;
 
@@ -21,8 +22,9 @@ public class View : IView {
     public bool IsSprite;
 
     public Sprite Sprite;
-    public string SpritePath;
-    public SortingLayer Layer;
+    public List<string> SpritePaths = new List<string>();
+
+    public string SortingLayerName;
     public int Depth;
 
     public delegate void SpecificConfig(Drawable drawable);
@@ -37,12 +39,14 @@ public class View : IView {
 
     public virtual bool Config(Drawable drawable) {
         
-        drawable.transform.localPosition = Position;
+        //drawable.transform.localPosition = Position;
         drawable.transform.localScale = Scale;
-
-        if(SpritePath != null) {
+        if(SpritePaths.Count > drawable.SpriteIndex) {
             SpriteRenderer spriteRenderer = drawable.gameObject.AddComponent<SpriteRenderer>();
-            Sprite = Resources.Load<Sprite>(SpritePath);
+            Sprite = Resources.Load<Sprite>(SpritePaths[drawable.SpriteIndex]);
+            spriteRenderer.sprite = Sprite;
+            spriteRenderer.sortingLayerName = SortingLayerName;
+
         }
         SpecificConfigFunc(drawable);
         return true;

@@ -7,7 +7,8 @@ using UnityEngine;
 
 namespace Base.Rulesets.Straight.Rulesets.Objects.Drawables {
     class DrawableHoldNote : DrawableStraightHitObject<HoldNote> {
-        private new void construct(Note hitObject, Pitch pitch) {
+        protected new void construct(HoldNote hitObject) {
+            base.construct(hitObject);
         }
     }
 }

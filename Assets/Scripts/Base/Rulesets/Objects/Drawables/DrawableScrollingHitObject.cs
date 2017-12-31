@@ -6,6 +6,9 @@ using Base.Rulesets.Straight.Rulesets.Objects;
 using System;
 
 namespace Base.Rulesets.Objects.Drawables {
+
+    public class DrawableScrollingHitObject : DrawableScrollingHitObject<ScrollingHitObject> { }
+
     public class DrawableScrollingHitObject<TObject> : DrawableHitObject<TObject>
         where TObject : ScrollingHitObject
     {

@@ -7,38 +7,61 @@ using Base.Utils.Types;
 using Base.Rulesets;
 using Base.Rulesets.Straight.Configurations;
 using Base.Rulesets.Straight;
+using Base.Configurations;
 
 namespace Base.Scenes {
     public class PlayMain : AppBase {
 
+        public GameObject text;
 
-        // 在遊戲編輯器中refernece
         public GameObject Loader;
 
         public Player Player;
-        
+
+
+        private void Awake() {
+            LazyConstruct();
+        }
 
         void Start() {
+            Debugger.button = button;
+
             InitializeView();
+            //
+            Cache(new StraightConfigManager()
+                .Set(StraightSetting.StartPitch, Pitch.c1)
+                .Set(StraightSetting.availableColumns, 36)
+                .Set(StraightSetting.TargetLineHeight, 0f));
+            //
+            Cache(new FrameworkConfigManager()
+                .Set(FrameworkSetting.Width,  1920)
+                .Set(FrameworkSetting.Height, 1080));
+            //
             var loadMethods = new List<int>();
 
             Loader = GameObject.Find("Loader");
             Loader loader = Loader.GetComponent<Loader>();
             Cache(loader.LastScreen);
-
-            Cache(new StraightConfigManager()
-                .Set(StraightSetting.StartPitch, Pitch.c2)
-                .Set(StraightSetting.availableColumns, 24));
-
+            //
             AddChild(Player = New<Player>(null));
+
+            
+
         }
 
         private void InitializeView() {
             ViewConfig viewConfig = new ViewConfig();
 
             viewConfig.Set("StraightPlayField", new View() { })
-                      .Set("Column", new View() { })
-                      .Set("DrawableNote", new View() { });
+                      .Set("Column", new View() {
+                          //Scale = new Vector2(0.8f, 2f),
+                          SpritePaths = new List<string>() { "Column4" },
+                          SortingLayerName = "Column"
+                      })
+                      .Set("DrawableNote", new View() {
+                          SpritePaths = new List<string>() { "Note5", "BlackNote2" },
+                          SortingLayerName = "HitObject"
+                      });
 
             Cache(viewConfig);
         }

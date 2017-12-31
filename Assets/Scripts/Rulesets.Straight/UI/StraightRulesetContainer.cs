@@ -17,23 +17,22 @@ namespace Base.Rulesets.Straight.UI {
 
 
         protected sealed override PlayField CreatePlayfield() {
-            return New<StraightPlayField>(new object[] { StartPitch, AvailableColumns });
+            return New<StraightPlayField>(null);
         }
 
         protected override SheetmusicConverter<StraightHitObject> CreateSheetmusicConverter() {
-            if (IsForCurrentRuleset)
-                AvailableColumns = WorkingSheetmusic.SheetmusicInfo.BaseDifficulty.AvailableColumns;
+            //if (IsForCurrentRuleset)
+                //AvailableColumns = WorkingSheetmusic.SheetmusicInfo.BaseDifficulty.AvailableColumns;
             return new StraightSheetmusicConverter(IsForCurrentRuleset, AvailableColumns);
         }
 
         protected override DrawableHitObject<StraightHitObject> GetVisualRepresentation(StraightHitObject h) {
-            Pitch pitch = PlayField.Columns[h.Column].Pitch;
             Note note = h as Note;
             HoldNote holdNote = h as HoldNote;
             string noteName = "Note" + h.StartBar;
             if (note != null) {
-
-                return New<DrawableNote>(new object[] { note, pitch }, noteName);
+                int spriteIndex = note.IsBlackKey() ? 1 : 0;
+                return New<DrawableNote>(new object[] { note, spriteIndex }, noteName);
             }
             if (holdNote != null) {
 

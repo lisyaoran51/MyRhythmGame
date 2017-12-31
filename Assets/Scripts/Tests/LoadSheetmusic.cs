@@ -11,9 +11,13 @@ namespace Base.Tests {
     public class LoadSheetmusic : AppBase {
         public SongSelect SongSelect;
         public GameObject Loader;
+
+        private void Awake() {
+            LazyConstruct();
+        }
+
         // Use this for initialization
         void Start() {
-            
             //Ruleset = new StraightRuleset();
             SheetmusicManager s = new SheetmusicManager();
             s.Import(@"D:\Users\TsaiJiaYu\documents\MyRhythmGame\test");

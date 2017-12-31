@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\Base\Scoring\ScoreProcessor.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\ControlPoints\ControlPoint.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\ControlPoints\ControlPointInfo.cs" />
+    <Compile Include="Assets\Scripts\Base\Sheetmusics\ControlPoints\SpeedControlPoint.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\ControlPoints\TimingControlPoint.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\Formats\SheetmusicDecoder.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\IO\FileReader.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Assets\Scripts\Base\Views\View.cs" />
     <Compile Include="Assets\Scripts\Base\Views\ViewConfig.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Configurations\StraightConfigManager.cs" />
+    <Compile Include="Assets\Scripts\Rulesets.Straight\Graphics\StraightFillFlowContainer.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableHoldNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableStraightHitObject.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Types\IHasColumn.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Types\IHasDistance.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Types\IHasEndTime.cs" />
+    <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Types\IHasPitch.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\StraightRuleset.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Sheetmusics\ControlPoints\StraightTimingControlPoint.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Sheetmusics\Formats\StraightDecoder.cs" />
@@ -169,6 +172,7 @@
     <Compile Include="Assets\Scripts\Tests\SongSelect.cs" />
     <Compile Include="Assets\Scripts\Utils\Cachable.cs" />
     <Compile Include="Assets\Scripts\Utils\ChildAddable.cs" />
+    <Compile Include="Assets\Scripts\Utils\Debugger.cs" />
     <Compile Include="Assets\Scripts\Utils\Loadable.cs" />
     <Compile Include="Assets\Scripts\Utils\Newable.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IAddChild.cs" />
@@ -180,6 +184,9 @@
     <Compile Include="Assets\Scripts\Utils\Types\IIntangible.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\ILoadable.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\INewable.cs" />
+    <Compile Include="Assets\Scripts\Utils\Types\IUpdatable.cs" />
+    <Compile Include="Assets\Scripts\Utils\Updatable.cs" />
+    <Compile Include="Assets\Scripts\Utils\Updated.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Newtonsoft.Json.xml" />

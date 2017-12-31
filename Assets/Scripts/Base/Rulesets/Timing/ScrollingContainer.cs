@@ -5,14 +5,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollingContainer : ChildAddable {
+namespace Base.Rulesets.Timing {
+    public abstract class ScrollingContainer<TObject> : Updated 
+        where TObject : ScrollingHitObject
+    {
+        public int DebugCount;
 
-    internal ControlPoint ControlPoint;
-    internal float VisibleTimeRange;
-    public DrawableScrollingHitObject<ScrollingHitObject> ScrollingHitObject;
 
-    internal void Add(DrawableScrollingHitObject<ScrollingHitObject> hitObject) {
-        ScrollingHitObject = hitObject;
-        AddChild(hitObject);
+        public ControlPoint ControlPoint;
+        public float VisibleTimeRange;
+        public DrawableScrollingHitObject<TObject> ScrollingHitObject;
+
+        /// <summary>
+        /// The axes through which this <see cref="ScrollingContainer"/> scrolls. This is set by the <see cref="SpeedAdjustmentContainer"/>.
+        /// </summary>
+        public Axes ScrollingAxes;
+
+        public ScrollingContainer(ControlPoint controlPoint) {
+            ControlPoint = controlPoint;
+        }
+
+        public virtual void Add(DrawableScrollingHitObject<TObject> hitObject) {
+            ScrollingHitObject = hitObject;
+        }
+
     }
 }

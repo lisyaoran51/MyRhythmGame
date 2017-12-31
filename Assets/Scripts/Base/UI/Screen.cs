@@ -10,7 +10,7 @@ using Utils.Types;
 namespace Base.UI{
 	
 
-	public class Screen : ChildAddable, IAsIntangible<IntangibleScreen> {
+	public class Screen : Updatable, IAsIntangible<IntangibleScreen> {
 
         protected Screen lastScreen;
 

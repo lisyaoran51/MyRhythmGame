@@ -114,6 +114,7 @@ namespace Base.Rulesets.Straight.Configurations {
         Version,
 
         StartPitch,
-        availableColumns
+        availableColumns,
+        TargetLineHeight
     }
 }

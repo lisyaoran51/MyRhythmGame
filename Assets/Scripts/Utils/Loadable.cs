@@ -19,11 +19,19 @@ namespace Base.Utils {
         /// <summary>
         /// Describes the current state of this Drawable within the loading pipeline.
         /// </summary>
-        public LoadState LoadState;
+        public LoadState LoadState {
+            get { return loadState; }
+        }
 
         private delegate object ObjectActivator(object instance);
 
         private Dictionary<Type, ObjectActivator> activators = new Dictionary<Type, ObjectActivator>();
+
+        private void load() {
+            // TODO: 之後要調整成所有load都呼叫完才變成ready，所以可能是
+            // 在load之前呼叫一次，全部load完再呼叫一次
+            loadState = LoadState.Ready;
+        }
 
         private MethodInfo getLoader(Type type) {
             return type.GetMethod("load", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -78,17 +86,12 @@ namespace Base.Utils {
         /// </summary>
         /// <typeparam name="T">這個物件的型別</typeparam>
         /// <param name="instance">要執行load的物件</param>
-        public void Load<T>(T instance) {
-            switch (loadState) {
-                case LoadState.Ready:
-                case LoadState.Loaded:
-                    return;
-                case LoadState.Loading:
-                    break;
-                case LoadState.NotLoaded:
-                    loadState = LoadState.Loading;
-                    break;
-            }
+        public void Load<T>(T instance)
+            where T : Loadable
+        {
+
+            if (instance.IsLoaded)
+                return;
 
             registerLoad(typeof(T));
 
@@ -101,6 +104,17 @@ namespace Base.Utils {
         }
 
         public void LoadAsync() {
+
+            switch (loadState) {
+                case LoadState.Ready:
+                case LoadState.Loaded:
+                    return;
+                case LoadState.Loading:
+                    break;
+                case LoadState.NotLoaded:
+                    loadState = LoadState.Loading;
+                    break;
+            }
             /*
              * 這邊的意思跟 Load<child.type>(child); 一樣，只是c#不支援動態的T
              */

@@ -5,10 +5,12 @@ using Base.Rulesets.Straight;
 using Base.Rulesets.Straight.Rulesets.Objects;
 using UnityEngine;
 
-public class DrawableNote : DrawableStraightHitObject<Note> {
+public class DrawableNote : DrawableStraightHitObject<StraightHitObject> {
 
-    private void construct(Note hitObject, Pitch pitch) {
-        Pitch = pitch;
+    protected new void construct(Note hitObject, int spriteIndex = 0) {
+        base.construct(hitObject, spriteIndex);
+
+        Pitch = hitObject.Pitch;
         HitObject = hitObject;
     }
 }

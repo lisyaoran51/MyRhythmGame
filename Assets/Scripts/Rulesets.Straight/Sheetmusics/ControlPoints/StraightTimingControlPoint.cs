@@ -6,10 +6,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Base.Rulesets.Straight.SheetMusics.ControlPoints {
-    public class StraightTimingControlPoint : TimingControlPoint, IHasColumn {
+    public class StraightTimingControlPoint : TimingControlPoint, IHasPitch, IHasColumn {
 
         public int Column {
             protected set; get;
+        }
+
+        public Pitch Pitch {
+            set; get;
         }
 
     }

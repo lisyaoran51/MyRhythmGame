@@ -11,8 +11,8 @@ using Base.Rulesets.Objects;
 
 namespace Base.Rulesets.UI {
     public abstract class ScrollingRulesetContainer<TPlayField, TObject> : RulesetContainer<TPlayField, TObject>
-        where TPlayField : ScrollingPlayField
-        where TObject : HitObject
+        where TObject : ScrollingHitObject
+        where TPlayField : ScrollingPlayField<TObject>
     {
 
 
@@ -25,21 +25,22 @@ namespace Base.Rulesets.UI {
             List<ControlPoint> allTimingPoints = new List<ControlPoint>();
             allTimingPoints.AddRange(Sheetmusic.ControlPointInfo.TimingControlPoints);
 
-            allTimingPoints.ForEach(c => applySpeedAdjustment(c, PlayField));
+            allTimingPoints.ForEach(c => PlayField.ApplySpeedAdjustment(c));
         }
 
 
 
-
+        /* 下面這段移到playfield裡面做
         // TODO: 每個column都放一組SpeedAdjustmentContainer會很耗效能
         private void applySpeedAdjustment(ControlPoint controlPoint, ScrollingPlayField playField) {
             playField.HitObjects.AddSpeedAdjustment(CreateSpeedAdjustmentContainer(controlPoint));
-            playField.NestedScrollingPlayField.ForEach(p => applySpeedAdjustment(controlPoint, p));
+            if(playField.NestedScrollingPlayField.Count > 0)
+                playField.NestedScrollingPlayField.ForEach(p => applySpeedAdjustment(controlPoint, p));
         }
         
         private SpeedAdjustmentContainer CreateSpeedAdjustmentContainer(ControlPoint controlPoint) {
-            return New<SpeedAdjustmentContainer>(new object[] { controlPoint }, "SpeedAdjustment" + controlPoint.StartTime);
+            return new SpeedAdjustmentContainer (controlPoint);
         }
-        
+        */
     }
 }
