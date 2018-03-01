@@ -105,3 +105,30 @@ Scrolling HitObject Container的Speed Adjustment Containers是空的，要慢慢
 
 12/22
 https://www.alanzucconi.com/2015/10/07/how-to-integrate-arduino-with-unity/
+
+2/27
+要把高度改成根據按鍵的長度，減少高度，讓音符提早結束，並且傳送訊息給鋼琴，讓鋼琴開始發光
+LinearScrollingContainer.Add可以改變高度
+可以用Config Manager來改高度，但是要找個更好的方法，可能是透過遊戲設定來更改
+
+遊戲設定在osu是擺在Ruleset.Mods裡，找找看有沒有別的方法
+osu中的visible time range在各playfield中，太古漢mania是寫死，不過mania可以用gravity scrolling container重設音符的高度
+先照mania寫
+
+Ruleset container.apply mod -> mod.ApplyToRulesetContainer(this)
+
+我把音符的高度擺在linear scrolling container裡，但是osu中應該不是擺那，
+
+寫到StraightModFlowOut，要去working sheetmusic裡改mods
+
+3/1
+改變speed adjustment的內容，是ScrollingHitObjectContainer.AddSpeedAdjustment(SpeedAdjustment)的責任
+
+apply "key w/ Light" Mod流程：
+(1) Ruleset Container() -> Ruleset Container.apply mod() -> Straight Ruleset Container.??設定為這個模式
+	-> ruleset container 去改 playfield 去改 Hit Obj Container 去改每一個 SpeedAdjustment
+(2) Scrolling ruleset container.load() -> StraightPlayField.ApplySpeedAdjustment(every timing point)
+
+改LinearScrollingContainer.Add來修改落下位置，修改落下位置寫好了，接下來要寫觸發
+現在要先讀懂osu裡要怎麼到固定時間就產生特定圖按
+

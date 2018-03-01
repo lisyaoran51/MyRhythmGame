@@ -25,10 +25,14 @@ namespace Base.Rulesets.Straight.UI {
 
         public List<Column> Columns = new List<Column>();
 
+        private bool isModFlowOut = false;
+
         private event Action onLoadComplete;
 
-        protected new void construct() {
+        protected new void construct(bool isModFlowOut) {
             construct(Axes.Y);
+
+            this.isModFlowOut = isModFlowOut;
             onLoadComplete += ColumnArranger.Update;
         }
 
@@ -40,7 +44,7 @@ namespace Base.Rulesets.Straight.UI {
 
             for (int i = 0; i < ColumnCount; i++) {
 
-                Column c = New<Column>(new object[] { StartPitch + i, i, VisibleTimeRange }, "Column " + (StartPitch + i));
+                Column c = New<Column>(new object[] { StartPitch + i, i, VisibleTimeRange, isModFlowOut }, "Column " + (StartPitch + i));
                 AddChild(c);
                 ColumnArranger.Add(c);
                 Columns.Add(c);
@@ -63,6 +67,9 @@ namespace Base.Rulesets.Straight.UI {
         /// <summary>
         /// 將timingPoints加入本身的speedAdjust中，並且尋找下面的column，再把timingpoint所在的
         /// column加入這個timingpoint的speedAdjust
+        /// 
+        /// 流程： ScrollingRulesetContainer.load() -> StraightPlayField.ApplySpeedAdjustment(every timing point)
+        /// 
         /// </summary>
         /// <param name="controlPoint"></param>
         public override void ApplySpeedAdjustment(ControlPoint controlPoint) {

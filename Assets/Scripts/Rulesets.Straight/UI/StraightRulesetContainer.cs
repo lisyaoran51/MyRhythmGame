@@ -15,9 +15,10 @@ namespace Base.Rulesets.Straight.UI {
         public Pitch StartPitch;
         public int AvailableColumns;
 
+        public bool IsModFlowOut = false;
 
         protected sealed override PlayField CreatePlayfield() {
-            return New<StraightPlayField>(null);
+            return New<StraightPlayField>(new object[] {IsModFlowOut});
         }
 
         protected override SheetmusicConverter<StraightHitObject> CreateSheetmusicConverter() {

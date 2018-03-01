@@ -17,6 +17,13 @@ namespace Base.Rulesets.Timing {
         private float screenHeight;
         private float unitScreenHeight;
         private float targetLineHeight;
+        private float whiteKeyLength;
+        private float whiteKeyTarget;
+        private float blackKeyLength;
+        private float blackKeyTarget;
+        private float pixelToMillimeter;
+
+        public bool IsModFlowOut = false;
 
         public LinearScrollingContainer(ControlPoint controlPoint)
             : base(controlPoint) { }
@@ -34,9 +41,15 @@ namespace Base.Rulesets.Timing {
                 throw new InvalidOperationException(
                     @"Type StraightConfigManager is not registered, and is a dependency of LinearScrollingContainer.");
         
-            screenHeight = frameworkConfigManager.Get<int>(FrameworkSetting.Height);
-            unitScreenHeight = screenHeight / 100f; // TODO: 改成設定在設定裡
-            targetLineHeight = straightConfigManager.Get<float>(StraightSetting.TargetLineHeight);
+            
+            screenHeight        = frameworkConfigManager.Get<int>(FrameworkSetting.Height);
+            unitScreenHeight    = screenHeight / 100f; // TODO: 改成設定在設定裡
+            targetLineHeight    = straightConfigManager.Get<float>(StraightSetting.TargetLineHeight);
+            whiteKeyLength      = straightConfigManager.Get<float>(StraightSetting.WhiteKeyLength);
+            whiteKeyTarget      = straightConfigManager.Get<float>(StraightSetting.WhiteKeyTarget);
+            blackKeyLength      = straightConfigManager.Get<float>(StraightSetting.BlackKeyLength);
+            blackKeyTarget      = straightConfigManager.Get<float>(StraightSetting.BlackKeyTarget);
+            pixelToMillimeter   = straightConfigManager.Get<float>(StraightSetting.PixelToMillimeter);
         }
 
 
@@ -53,11 +66,33 @@ namespace Base.Rulesets.Timing {
         public override void Add(DrawableScrollingHitObject<TObject> hitObject) {
             ScrollingHitObject = hitObject;
 
-            // TODO: 把設定高度的動做封裝起來，紙擺一個抽象化的指令
             speed = unitScreenHeight / VisibleTimeRange;
-            hitObject.transform.localPosition =
-                ScrollingAxes == Axes.X ? new Vector2(speed * ControlPoint.StartTime + targetLineHeight, 0) :
-               (ScrollingAxes == Axes.Y ? new Vector2(0, speed * (ControlPoint.StartTime) - unitScreenHeight / 2f + targetLineHeight) : Vector2.zero);
+
+            if (IsModFlowOut) {
+                /*
+                 * 如果是音符流出螢幕模式，會先判斷是黑鍵還是白鍵，然後把音符掉下的位置調整往下移
+                 */
+                bool isBlackKey = false;
+                float offset = 0f; ;
+
+                StraightHitObject sho = hitObject.HitObject as StraightHitObject;
+                if (sho != null) {
+                    isBlackKey = sho.IsBlackKey();
+                    offset = isBlackKey ? blackKeyLength * blackKeyTarget / pixelToMillimeter :
+                                          whiteKeyLength * whiteKeyTarget / pixelToMillimeter;
+                }
+
+                hitObject.transform.localPosition =
+                    ScrollingAxes == Axes.X ? new Vector2(speed * ControlPoint.StartTime + targetLineHeight, 0) :
+                   (ScrollingAxes == Axes.Y ? new Vector2(0, speed * (ControlPoint.StartTime) - unitScreenHeight / 2f - offset ) : Vector2.zero);
+            } else {
+                // TODO: 把設定高度的動做封裝起來，紙擺一個抽象化的指令
+                
+                hitObject.transform.localPosition =
+                    ScrollingAxes == Axes.X ? new Vector2(speed * ControlPoint.StartTime + targetLineHeight, 0) :
+                   (ScrollingAxes == Axes.Y ? new Vector2(0, speed * (ControlPoint.StartTime) - unitScreenHeight / 2f + targetLineHeight) : Vector2.zero);
+            }
+            
         }
     }
 }

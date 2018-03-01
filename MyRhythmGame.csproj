@@ -92,6 +92,9 @@
     <Compile Include="Assets\Scripts\Base\IO\Serialization\IJsonSerializable.cs" />
     <Compile Include="Assets\Scripts\Base\Judgements\Judgement.cs" />
     <Compile Include="Assets\Scripts\Base\Play\Player.cs" />
+    <Compile Include="Assets\Scripts\Base\Rulesets\Mods\IApplicableMod.cs" />
+    <Compile Include="Assets\Scripts\Base\Rulesets\Mods\Mod.cs" />
+    <Compile Include="Assets\Scripts\Base\Rulesets\Mods\ModType.cs" />
     <Compile Include="Assets\Scripts\Base\Rulesets\Objects\Drawables\DrawableHitObject.cs" />
     <Compile Include="Assets\Scripts\Base\Rulesets\Objects\Drawables\DrawableScrollingHitObject.cs" />
     <Compile Include="Assets\Scripts\Base\Rulesets\Objects\HitObject.cs" />
@@ -135,6 +138,7 @@
     <Compile Include="Assets\Scripts\Base\Views\ViewConfig.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Configurations\StraightConfigManager.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Graphics\StraightFillFlowContainer.cs" />
+    <Compile Include="Assets\Scripts\Rulesets.Straight\Mods\StraightModFlowOut.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableHoldNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableStraightHitObject.cs" />

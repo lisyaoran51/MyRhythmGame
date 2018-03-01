@@ -115,6 +115,11 @@ namespace Base.Rulesets.Straight.Configurations {
 
         StartPitch,
         availableColumns,
-        TargetLineHeight
+        TargetLineHeight,
+        WhiteKeyLength,
+        WhiteKeyTarget,
+        BlackKeyLength,
+        BlackKeyTarget,
+        PixelToMillimeter
     }
 }

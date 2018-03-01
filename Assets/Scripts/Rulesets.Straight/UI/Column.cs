@@ -13,13 +13,12 @@ namespace Base.Rulesets.Straight.UI {
 
         public int ColumnNum;
 
-        protected void construct(Pitch pitch, int columnNum, float visibleTimeRange) {
+        protected void construct(Pitch pitch, int columnNum, float visibleTimeRange, bool isModFlowOut) {
             construct(Axes.Y);
             Pitch = pitch;
             ColumnNum = columnNum;
             VisibleTimeRange = visibleTimeRange;
-
-
+            HitObjects.IsModFlowOut = isModFlowOut;
         }
 
         protected new void Update() {
@@ -29,6 +28,10 @@ namespace Base.Rulesets.Straight.UI {
         /// <summary>
         /// 將timing Points加入本身的speed Adjust中，如果是音符的timing point，就要看這個timing point是不是這個column的pitch
         /// ，式的話再加進去
+        /// 
+        /// 流程： ScrollingRulesetContainer.load() -> StraightPlayField.ApplySpeedAdjustment(every timing point)
+        ///         -> Column.ApplySpeedAdjustment(specific timing point)
+        /// 
         /// </summary>
         /// <param name="controlPoint"></param>
         public override void ApplySpeedAdjustment(ControlPoint controlPoint) {

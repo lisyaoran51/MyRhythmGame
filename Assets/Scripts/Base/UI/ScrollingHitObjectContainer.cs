@@ -14,6 +14,8 @@ namespace Base.UI {
 
         public float VisibleTimeRange;
 
+        public bool IsModFlowOut;
+
         //protected new List<DrawableScrollingHitObject<ScrollingHitObject>> hitObjects;
 
         private List<SpeedAdjustmentContainer<TObject>> speedAdjustmentContainers = new List<SpeedAdjustmentContainer<TObject>>();
@@ -30,12 +32,21 @@ namespace Base.UI {
             this.scrollingAxes = scrollingAxes;
         }
 
+
+        /// <summary>
+        /// 
+        /// 流程： ScrollingRulesetContainer.load() -> StraightPlayField.ApplySpeedAdjustment(every timing point)
+        ///        -> Column.ApplySpeedAdjustment(specific timing point) -> HitObjContainer.AddSpeedAdjustment(create new container)
+        /// 
+        /// </summary>
+        /// <param name="speedAdjustmentContainer"></param>
         public void AddSpeedAdjustment(SpeedAdjustmentContainer<TObject> speedAdjustmentContainer) 
         {
-            speedAdjustmentContainer.Parent = Parent;
             speedAdjustmentContainer.ScrollingAxes = scrollingAxes;
             speedAdjustmentContainer.VisibleTimeRange = VisibleTimeRange;
+            speedAdjustmentContainer.IsModFlowOut = IsModFlowOut;
             SpeedAdjustmentContainers.Add(speedAdjustmentContainer);
+            speedAdjustmentContainer.Parent = Parent;                       /*執行這行時，會執行load()*/
             /*
              * 把default speed adjustment裡的元素拿出來，擺進現在的speed adjust裡
              */
@@ -58,6 +69,9 @@ namespace Base.UI {
                 );
                 speedAdjustment.Add(h);
                 defaultSpeedAdjustments.Add(speedAdjustment);
+                /*
+                 * what is default for?
+                 */
             }
         }
 

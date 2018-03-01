@@ -12,6 +12,8 @@ namespace Base.Rulesets.Timing {
 
         public float VisibleTimeRange = 4f;
 
+        public bool IsModFlowOut = false;
+
         public ControlPoint ControlPoint;
 
         //public DrawableScrollingHitObject<TObject> ScrollingHitObject;
@@ -48,8 +50,9 @@ namespace Base.Rulesets.Timing {
         
         private ScrollingContainer<TObject> CreateScrollingContainer() {
             return new LinearScrollingContainer<TObject>(ControlPoint) {
-                Parent = this.Parent
-            };
+                Parent = this.Parent,
+                IsModFlowOut = this.IsModFlowOut
+        };
         }
 
         public void Add(DrawableScrollingHitObject<TObject> hitObject) {

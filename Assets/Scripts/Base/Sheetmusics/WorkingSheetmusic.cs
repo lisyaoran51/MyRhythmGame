@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Base.Rulesets.Mods;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +10,14 @@ namespace Base.Sheetmusics {
 
         public readonly SheetmusicMetadata Metadata;
 
+        public readonly IEnumerable<Mod> Mods;
+
         protected WorkingSheetmusic(SheetmusicInfo sheetmusicInfo) {
             SheetmusicInfo = sheetmusicInfo;
             Metadata = sheetmusicInfo.Metadata ?? new SheetmusicMetadata();
-            
+
+            Mods += mods => applyRateAdjustments();
+
         }
 
         protected abstract Sheetmusic GetSheetmusic();

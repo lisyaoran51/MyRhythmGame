@@ -31,7 +31,12 @@ namespace Base.Scenes {
             Cache(new StraightConfigManager()
                 .Set(StraightSetting.StartPitch, Pitch.c1)
                 .Set(StraightSetting.availableColumns, 36)
-                .Set(StraightSetting.TargetLineHeight, 0f));
+                .Set(StraightSetting.TargetLineHeight, 0f)
+                .Set(StraightSetting.WhiteKeyLength, 130f)
+                .Set(StraightSetting.WhiteKeyTarget, 10f / 11f)
+                .Set(StraightSetting.BlackKeyLength, 9f)
+                .Set(StraightSetting.BlackKeyTarget, 6f / 7f)
+                .Set(StraightSetting.PixelToMillimeter, 0.195f));
             //
             Cache(new FrameworkConfigManager()
                 .Set(FrameworkSetting.Width,  1920)

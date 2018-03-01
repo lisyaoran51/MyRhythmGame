@@ -1,5 +1,6 @@
 ﻿using Base.Configurations;
 using Base.Rulesets;
+using Base.Rulesets.Mods;
 using Base.Rulesets.Objects;
 using Base.Rulesets.Objects.Drawables;
 using Base.Sheetmusics;
@@ -7,6 +8,7 @@ using Base.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Base.UI {
@@ -21,6 +23,11 @@ namespace Base.UI {
         public event Action<Judgement> OnJudgement;
 
         public Sheetmusic<TObject> Sheetmusic;
+
+        /// <summary>
+        /// The mods which are to be applied.
+        /// </summary>
+        protected IEnumerable<Mod> Mods;
 
         public PlayField PlayField { get; private set; }
 
@@ -51,15 +58,19 @@ namespace Base.UI {
             construct();
 
             WorkingSheetmusic = workingSheetmusic;
+            Mods = workingSheetmusic.Mods;
+
 
             SheetmusicConverter<TObject> converter = CreateSheetmusicConverter();
             SheetmusicProcessor<TObject> processor = CreateSheetmusicProcessor();
 
 
             Sheetmusic = converter.Convert(WorkingSheetmusic.Sheetmusic);
+
             processor.PostProcess(Sheetmusic);
 
-
+            // Add mods, should always be the last thing applied to give full control to mods
+            applyMods(Mods);
 
         }
 
@@ -96,6 +107,18 @@ namespace Base.UI {
         //TODO:RulesetContainer.CreateScoreProcessor
         public ScoreProcessor CreateScoreProcessor() {
             return null;
+        }
+
+        /// <summary>
+        /// Applies the active mods to this RulesetContainer.
+        /// </summary>
+        /// <param name="mods"></param>
+        private void applyMods(IEnumerable<Mod> mods) {
+            if (mods == null)
+                return;
+
+            foreach (var mod in mods.OfType<IApplicableMod<TObject>>())
+                mod.ApplyToRulesetContainer(this);
         }
     }
 
