@@ -43,7 +43,7 @@ namespace Base.Rulesets.Timing {
         
             
             screenHeight        = frameworkConfigManager.Get<int>(FrameworkSetting.Height);
-            unitScreenHeight    = screenHeight / 100f; // TODO: 改成設定在設定裡
+            unitScreenHeight    = screenHeight / 100f;                                                  // TODO: 改成設定在設定裡
             targetLineHeight    = straightConfigManager.Get<float>(StraightSetting.TargetLineHeight);
             whiteKeyLength      = straightConfigManager.Get<float>(StraightSetting.WhiteKeyLength);
             whiteKeyTarget      = straightConfigManager.Get<float>(StraightSetting.WhiteKeyTarget);
@@ -85,6 +85,12 @@ namespace Base.Rulesets.Timing {
                 hitObject.transform.localPosition =
                     ScrollingAxes == Axes.X ? new Vector2(speed * ControlPoint.StartTime + targetLineHeight, 0) :
                    (ScrollingAxes == Axes.Y ? new Vector2(0, speed * (ControlPoint.StartTime) - unitScreenHeight / 2f - offset ) : Vector2.zero);
+
+                Schedule(() => {
+                    if(sho != null) {
+
+                    }
+                });
             } else {
                 // TODO: 把設定高度的動做封裝起來，紙擺一個抽象化的指令
                 

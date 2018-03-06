@@ -86,10 +86,12 @@
     <Compile Include="Assets\Scripts\Base\Audio\Track.cs" />
     <Compile Include="Assets\Scripts\Base\Configurations\ConfigManager.cs" />
     <Compile Include="Assets\Scripts\Base\Configurations\FrameworkConfigManager.cs" />
+    <Compile Include="Assets\Scripts\Base\Extensions\ExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\Base\Graphics\Drawable.cs" />
     <Compile Include="Assets\Scripts\Base\Graphics\FillFlowContainer.cs" />
     <Compile Include="Assets\Scripts\Base\Graphics\FlowContainer.cs" />
     <Compile Include="Assets\Scripts\Base\IO\Serialization\IJsonSerializable.cs" />
+    <Compile Include="Assets\Scripts\Base\IO\SerialPort\SerialPortManager.cs" />
     <Compile Include="Assets\Scripts\Base\Judgements\Judgement.cs" />
     <Compile Include="Assets\Scripts\Base\Play\Player.cs" />
     <Compile Include="Assets\Scripts\Base\Rulesets\Mods\IApplicableMod.cs" />
@@ -123,6 +125,8 @@
     <Compile Include="Assets\Scripts\Base\Sheetmusics\SheetmusicProcessor.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\Timing\TimeSignature.cs" />
     <Compile Include="Assets\Scripts\Base\Sheetmusics\WorkingSheetmusic.cs" />
+    <Compile Include="Assets\Scripts\Base\Threading\ScheduledDelegate.cs" />
+    <Compile Include="Assets\Scripts\Base\Threading\Scheduler.cs" />
     <Compile Include="Assets\Scripts\Base\UI\HitObjectContainer.cs" />
     <Compile Include="Assets\Scripts\Base\UI\Intangibles\IntangibleScreen.cs" />
     <Compile Include="Assets\Scripts\Base\UI\PlayField.cs" />
@@ -138,6 +142,7 @@
     <Compile Include="Assets\Scripts\Base\Views\ViewConfig.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Configurations\StraightConfigManager.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Graphics\StraightFillFlowContainer.cs" />
+    <Compile Include="Assets\Scripts\Rulesets.Straight\IO\SerialPort\StraightSerialPortManager.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Mods\StraightModFlowOut.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableHoldNote.cs" />
     <Compile Include="Assets\Scripts\Rulesets.Straight\Rulesets\Objects\Drawables\DrawableNote.cs" />
@@ -179,6 +184,7 @@
     <Compile Include="Assets\Scripts\Utils\Debugger.cs" />
     <Compile Include="Assets\Scripts\Utils\Loadable.cs" />
     <Compile Include="Assets\Scripts\Utils\Newable.cs" />
+    <Compile Include="Assets\Scripts\Utils\Schedulable.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IAddChild.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IAsIntangible.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\ICachable.cs" />
@@ -188,6 +194,7 @@
     <Compile Include="Assets\Scripts\Utils\Types\IIntangible.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\ILoadable.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\INewable.cs" />
+    <Compile Include="Assets\Scripts\Utils\Types\ISchedulable.cs" />
     <Compile Include="Assets\Scripts\Utils\Types\IUpdatable.cs" />
     <Compile Include="Assets\Scripts\Utils\Updatable.cs" />
     <Compile Include="Assets\Scripts\Utils\Updated.cs" />

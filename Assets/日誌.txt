@@ -132,3 +132,7 @@ apply "key w/ Light" Mod流程：
 改LinearScrollingContainer.Add來修改落下位置，修改落下位置寫好了，接下來要寫觸發
 現在要先讀懂osu裡要怎麼到固定時間就產生特定圖按
 
+3/6
+把scheduler移植到這上面，從updateable和updated來執行scheduled task，音符觸發燈光事件是由linear scrolling container根據
+落下的時間，呼叫Straight serial port manager來處理傳送port到arduino上
+寫到serial port manager，用類似config manager的方法處理serial port manager，先set所有參數，再一次傳送

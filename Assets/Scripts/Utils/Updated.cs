@@ -1,4 +1,5 @@
-﻿using Base.Utils.Types;
+﻿using Base.Threading;
+using Base.Utils.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using UnityEngine;
 namespace Base.Utils {
 
     public abstract class Updated : IUpdatable {
+
+        #region Updated
 
         public bool IsLoaded { get { return loadState >= LoadState.Ready; } }
 
@@ -49,6 +52,11 @@ namespace Base.Utils {
         public virtual void UpdateSubTree() {
             if (!IsLoaded) return;
 
+            if (scheduler != null) {
+                int amountScheduledTasks = scheduler.Update();
+                //FrameStatistics.Add(StatisticsCounterType.ScheduleInvk, amountScheduledTasks);
+            }
+
             update();
             if (onUpdateSubTree != null)
                 onUpdateSubTree.Invoke();
@@ -62,5 +70,42 @@ namespace Base.Utils {
             onUpdateSubTree += () => { subObject.UpdateSubTree(); };
 
         }
+
+        #endregion
+
+
+        #region Schedulable
+
+        /*
+         * 把schedule的功能放到updated裡面來，暫時不把兩個公能分開
+         * 
+         */
+
+        private Scheduler scheduler;
+
+        protected Scheduler Scheduler {
+            set { throw new InvalidOperationException("Schedulable.Scheduler is for get only."); }
+            get {
+                return scheduler;
+            }
+        }
+
+        protected double Delay {
+            private set; get;
+        }
+
+        protected internal ScheduledDelegate Schedule(Action action, double delay) {
+            if (Scheduler == null)
+                scheduler = new Scheduler();
+            return Scheduler.AddDelayed(action, delay);
+        }
+
+        protected internal ScheduledDelegate Schedule(Action action) {
+            if (Scheduler == null)
+                scheduler = new Scheduler();
+            return Scheduler.AddDelayed(action, Delay);
+        }
+
+        #endregion
     }
 }

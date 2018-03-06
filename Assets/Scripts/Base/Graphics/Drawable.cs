@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Drawable : Updatable {
+public class Drawable : Schedulable {
 
     protected bool isSprite;
 

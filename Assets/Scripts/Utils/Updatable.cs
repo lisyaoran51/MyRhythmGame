@@ -1,4 +1,5 @@
-﻿using Base.Utils;
+﻿using Base.Threading;
+using Base.Utils;
 using Base.Utils.Types;
 using System;
 using System.Collections;
@@ -14,7 +15,7 @@ namespace Base.Utils {
         protected void Update() {
             UpdateSubTree();
         }
-
+        
         private void update() {
             // no-op
         }

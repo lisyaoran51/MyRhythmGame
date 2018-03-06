@@ -7,6 +7,9 @@ using System.Reflection;
 using UnityEngine;
 
 namespace Base.Utils {
+    /// <summary>
+    /// 讓unity可以用建構子的方式去產生物件
+    /// </summary>
     public class Newable : MonoBehaviour, INewable {
 
 
