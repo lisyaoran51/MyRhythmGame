@@ -173,6 +173,8 @@ namespace Base.Threading {
         public ScheduledDelegate AddDelayed(Action task, double timeUntilRun, bool repeat = false) {
             // We are locking here already to make sure we have no concurrent access to currentTime
             lock (timedTasks) {
+
+                Debug.Log("現在時間是" + currentTime + ", 預計跑的時間是" + timeUntilRun + "後");
                 ScheduledDelegate del = new ScheduledDelegate(task, currentTime + timeUntilRun, repeat ? timeUntilRun : -1);
                 Add(del);
                 return del;

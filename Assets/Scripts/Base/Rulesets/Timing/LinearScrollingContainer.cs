@@ -1,6 +1,8 @@
 ﻿using Base.Configurations;
+using Base.IO.SerialPorts;
 using Base.Rulesets.Objects.Drawables;
 using Base.Rulesets.Straight.Configurations;
+using Base.Rulesets.Straight.IO.SerialPorts;
 using Base.Rulesets.Straight.Rulesets.Objects;
 using Base.Rulesets.Straight.UI;
 using System;
@@ -14,14 +16,16 @@ namespace Base.Rulesets.Timing {
         where TObject : ScrollingHitObject
     {
         private float speed;
-        private float screenHeight;
-        private float unitScreenHeight;
+        private float screenHeight;         
+        private float unitScreenHeight;     // ?
         private float targetLineHeight;
         private float whiteKeyLength;
         private float whiteKeyTarget;
         private float blackKeyLength;
         private float blackKeyTarget;
         private float pixelToMillimeter;
+
+        private SerialPortManager serialPortManager;
 
         public bool IsModFlowOut = false;
 
@@ -40,10 +44,16 @@ namespace Base.Rulesets.Timing {
             if (frameworkConfigManager == null) 
                 throw new InvalidOperationException(
                     @"Type StraightConfigManager is not registered, and is a dependency of LinearScrollingContainer.");
-        
-            
+
+            serialPortManager = Parent.GetCache(typeof(SerialPortManager)) as SerialPortManager;
+            if (serialPortManager == null)
+                throw new InvalidOperationException(
+                    @"Type SerialPortManager is not registered, and is a dependency of LinearScrollingContainer.");
+
+
             screenHeight        = frameworkConfigManager.Get<int>(FrameworkSetting.Height);
             unitScreenHeight    = screenHeight / 100f;                                                  // TODO: 改成設定在設定裡
+                                                                                                            // 為什麼要 / 100f?
             targetLineHeight    = straightConfigManager.Get<float>(StraightSetting.TargetLineHeight);
             whiteKeyLength      = straightConfigManager.Get<float>(StraightSetting.WhiteKeyLength);
             whiteKeyTarget      = straightConfigManager.Get<float>(StraightSetting.WhiteKeyTarget);
@@ -78,22 +88,28 @@ namespace Base.Rulesets.Timing {
                 StraightHitObject sho = hitObject.HitObject as StraightHitObject;
                 if (sho != null) {
                     isBlackKey = sho.IsBlackKey();
-                    offset = isBlackKey ? blackKeyLength * blackKeyTarget / pixelToMillimeter :
-                                          whiteKeyLength * whiteKeyTarget / pixelToMillimeter;
+                    offset = isBlackKey ? blackKeyLength * blackKeyTarget / pixelToMillimeter / 100f :
+                                          whiteKeyLength * whiteKeyTarget / pixelToMillimeter / 100f;   // 為什麼是/ 100f已不可考
                 }
 
                 hitObject.transform.localPosition =
                     ScrollingAxes == Axes.X ? new Vector2(speed * ControlPoint.StartTime + targetLineHeight, 0) :
                    (ScrollingAxes == Axes.Y ? new Vector2(0, speed * (ControlPoint.StartTime) - unitScreenHeight / 2f - offset ) : Vector2.zero);
 
+                /*
+                 * 在音符碰觸到螢幕畫面下方時，預設好的Scheduler會在那個時後送出Event到Arduino
+                 */
                 Schedule(() => {
                     if(sho != null) {
-
+                        // TODO: StraightEventType應該完全對應到Note的type，但現在只有Note，就不用特別調
+                        serialPortManager.WriteToArduino(
+                            new StraightEvent(StraightEventType.Note, sho.Pitch, offset / speed).ToString()
+                            );
                     }
-                });
+                }, (speed * (ControlPoint.StartTime) - unitScreenHeight / 2f - offset) / speed + 1f);
+
             } else {
                 // TODO: 把設定高度的動做封裝起來，紙擺一個抽象化的指令
-                
                 hitObject.transform.localPosition =
                     ScrollingAxes == Axes.X ? new Vector2(speed * ControlPoint.StartTime + targetLineHeight, 0) :
                    (ScrollingAxes == Axes.Y ? new Vector2(0, speed * (ControlPoint.StartTime) - unitScreenHeight / 2f + targetLineHeight) : Vector2.zero);

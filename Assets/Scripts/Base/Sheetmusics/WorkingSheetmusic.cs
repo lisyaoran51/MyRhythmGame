@@ -10,13 +10,13 @@ namespace Base.Sheetmusics {
 
         public readonly SheetmusicMetadata Metadata;
 
-        public readonly IEnumerable<Mod> Mods;
+        public readonly List<Mod> Mods = new List<Mod>();
 
         protected WorkingSheetmusic(SheetmusicInfo sheetmusicInfo) {
             SheetmusicInfo = sheetmusicInfo;
             Metadata = sheetmusicInfo.Metadata ?? new SheetmusicMetadata();
 
-            Mods += mods => applyRateAdjustments();
+            //Mods += mods => applyRateAdjustments();   // 這個是位來調整難度時，改變音符速度用
 
         }
 

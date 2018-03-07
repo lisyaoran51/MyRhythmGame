@@ -31,7 +31,8 @@ namespace Base.Rulesets.Straight.Mods {
 
         public void ApplyToRulesetContainer(RulesetContainer<StraightHitObject> rulesetContainer) {
 
-            /* In this moment, the speed adjustments had been added.
+            /* 
+             * In this moment, the speed adjustments had been added.
              * We change the configuration of this ruleset container, then it would generate speed adjustments
              * with this configuration itself.
              */

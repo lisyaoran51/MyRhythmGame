@@ -13,7 +13,7 @@ namespace Base.Rulesets.Straight.UI {
 
         public int ColumnNum;
 
-        protected void construct(Pitch pitch, int columnNum, float visibleTimeRange, bool isModFlowOut) {
+        protected void construct(Pitch pitch, int columnNum, float visibleTimeRange, bool isModFlowOut = false) {
             construct(Axes.Y);
             Pitch = pitch;
             ColumnNum = columnNum;

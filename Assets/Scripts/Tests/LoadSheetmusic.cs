@@ -1,4 +1,5 @@
-﻿using Base.Rulesets.Straight.Rulesets;
+﻿using Base.Rulesets.Straight.Mods;
+using Base.Rulesets.Straight.Rulesets;
 using Base.Scenes;
 using Base.Sheetmusics;
 using Base.Utils;
@@ -29,6 +30,9 @@ namespace Base.Tests {
             
             WorkingSheetmusic = SongSelect.Select(s.SheetmusicInfos[0]);
             // 把SheetmusicManager和WorkingSheetmusic load進自己裡面
+
+            /* 把mod改變為flow out*/
+            WorkingSheetmusic.Mods.Add(new StraightModFlowOut());
             
 
             Loader loader = New<Loader>(new object[] { SongSelect });

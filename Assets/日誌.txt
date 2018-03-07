@@ -136,3 +136,6 @@ apply "key w/ Light" Mod流程：
 把scheduler移植到這上面，從updateable和updated來執行scheduled task，音符觸發燈光事件是由linear scrolling container根據
 落下的時間，呼叫Straight serial port manager來處理傳送port到arduino上
 寫到serial port manager，用類似config manager的方法處理serial port manager，先set所有參數，再一次傳送
+
+3/7
+visible time range的設定有點問題，目前是從ScrollingPlayField設定

@@ -42,11 +42,15 @@ namespace Base.UI {
         /// <param name="speedAdjustmentContainer"></param>
         public void AddSpeedAdjustment(SpeedAdjustmentContainer<TObject> speedAdjustmentContainer) 
         {
-            speedAdjustmentContainer.ScrollingAxes = scrollingAxes;
+            
             speedAdjustmentContainer.VisibleTimeRange = VisibleTimeRange;
             speedAdjustmentContainer.IsModFlowOut = IsModFlowOut;
             SpeedAdjustmentContainers.Add(speedAdjustmentContainer);
             speedAdjustmentContainer.Parent = Parent;                       /*執行這行時，會執行load()*/
+            speedAdjustmentContainer.ScrollingAxes = scrollingAxes;         /*因為scrollingAxes必須要先有create scrolling container，   */
+                                                                            /*因此要等Parent設定完，speed adjustment執行load()以後，    */
+                                                                            /*才能更改scrollingAxes，但其實目前的程式中沒有用到         */
+                                                                            /*Scrolling Axes                                            */
             /*
              * 把default speed adjustment裡的元素拿出來，擺進現在的speed adjust裡
              */

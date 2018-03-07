@@ -13,7 +13,7 @@ namespace Base.UI {
     {
 
 
-        public float VisibleTimeRange = 1000f;
+        public float VisibleTimeRange = 2.5f;
 
         public new ScrollingHitObjectContainer<TObject> HitObjects {
             get { return (ScrollingHitObjectContainer<TObject>)base.HitObjects; }
