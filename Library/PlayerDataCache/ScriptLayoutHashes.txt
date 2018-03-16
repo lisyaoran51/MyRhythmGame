@@ -46,7 +46,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-0abb8f0250906981016b2ddaf4c38394 Assembly-CSharp.dll:Base.Rulesets.Straight.UI.StraightRulesetContainer
+41f0d232c0a0ce11d5983776a5ac5866 Assembly-CSharp.dll:Base.Rulesets.Straight.UI.StraightRulesetContainer
 0d23f8a8dccc4e00c1d17e3111e55631 Assembly-CSharp.dll:Base.Tests.LoadSheetmusic
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -124,7 +124,9 @@ d8f830bf53df9db6662c1427270e220b Assembly-CSharp.dll:Base.Rulesets.Objects.Drawa
 8c345a8ab40f4ebded16daaf4bddb252 Assembly-CSharp.dll:Base.Tests.SongSelect
 dec62ed3ebd7439836aef56222b85911 Assembly-CSharp.dll:Base.Scenes.PlayMain
 8c345a8ab40f4ebded16daaf4bddb252 Assembly-CSharp.dll:Base.Utils.Cachable
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StraightSerialPortManager
 80b280549ceda7349df86f17786f6ec5 Assembly-CSharp.dll:Base.Play.Player
+2913e3b02af7c409ad175ba70d952fb8 Assembly-CSharp.dll:.TestScheduler
 8c345a8ab40f4ebded16daaf4bddb252 Assembly-CSharp.dll:Base.UI.PlayField
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -150,8 +152,10 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TestLEDEvent
 8c345a8ab40f4ebded16daaf4bddb252 Assembly-CSharp.dll:Base.Utils.ChildAddable
 7a37b6541d2428ff6630a9a225bb2e3c Assembly-CSharp.dll:Base.Rulesets.Straight.UI.Column
+30c098590c9f4513a96ad762576a24e0 Assembly-CSharp.dll:.TestHitScore
 8c345a8ab40f4ebded16daaf4bddb252 Assembly-CSharp.dll:Base.Utils.Newable
 8c345a8ab40f4ebded16daaf4bddb252 Assembly-CSharp.dll:.AppBase
 bb288ea7f62a9642e5fe67064538374a Assembly-CSharp.dll:.DrawableNote

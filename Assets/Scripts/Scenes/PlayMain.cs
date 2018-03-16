@@ -60,14 +60,17 @@ namespace Base.Scenes {
         private void InitializeView() {
             ViewConfig viewConfig = new ViewConfig();
 
-            viewConfig.Set("StraightPlayField", new View() { })
+            viewConfig.Set("StraightPlayField", new View() {
+                          //SpritePaths = new List<string>() { "BG1" },
+                          //SortingLayerName = "PlayField"
+                      })
                       .Set("Column", new View() {
                           //Scale = new Vector2(0.8f, 2f),
-                          SpritePaths = new List<string>() { "Column4" },
+                          SpritePaths = new List<string>() { "Column5" },
                           SortingLayerName = "Column"
                       })
                       .Set("DrawableNote", new View() {
-                          SpritePaths = new List<string>() { "Note5", "BlackNote2" },
+                          SpritePaths = new List<string>() { "Note6", "Note6" },
                           SortingLayerName = "HitObject"
                       });
 

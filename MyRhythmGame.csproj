@@ -181,6 +181,7 @@
     <Compile Include="Assets\Scripts\Scenes\PlayMain.cs" />
     <Compile Include="Assets\Scripts\Tests\LoadSheetmusic.cs" />
     <Compile Include="Assets\Scripts\Tests\SongSelect.cs" />
+    <Compile Include="Assets\Scripts\Tests\TestHitScore.cs" />
     <Compile Include="Assets\Scripts\Tests\TestLEDEvent.cs" />
     <Compile Include="Assets\Scripts\Tests\TestScheduler.cs" />
     <Compile Include="Assets\Scripts\Utils\Cachable.cs" />

@@ -18,7 +18,7 @@ namespace Base.IO.SerialPorts {
 
         public SerialPortManager(String port, int baudRate) {
             serialPort = new SerialPort(port, baudRate);
-            serialPort.ReadTimeout = 50;
+            serialPort.ReadTimeout = 25;
             if (!serialPort.IsOpen) {
                 serialPort.Open();
             }
